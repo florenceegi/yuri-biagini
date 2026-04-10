@@ -9,9 +9,27 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@react-three/postprocessing": "^3.0.4",
+    "@sanity/client": "^7.20.0",
+    "@sanity/image-url": "^2.1.1",
+    "@studio-freight/lenis": "^1.0.42",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
+    "gsap": "^3.14.2",
     "next": "16.2.3",
+    "next-intl": "^4.9.0",
+    "next-sanity": "^12.2.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.72.1",
+    "resend": "^6.10.0",
+    "sharp": "^0.34.5",
+    "splitting": "^1.1.0",
+    "three": "^0.183.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
