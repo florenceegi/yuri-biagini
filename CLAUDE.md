@@ -3,7 +3,7 @@
 # YURI-BIAGINI — Sito Artista (Oracode OS3)
 
 > Organo vetrina artista. Immersive 3D experience per Yuri Biagini.
-> Stack: Next.js 16 (App Router) + Three.js + GSAP + Sanity v3 + next-intl
+> Stack: Next.js 15 (App Router) + Three.js + GSAP + Sanity v3 + next-intl
 > URL: yuri-biagini.florenceegi.com | Path: /home/fabio/YURI-BIAGINI
 > Branch: feat/yuri-biagini-site | Template: Immersive 3D (Tier 2)
 
@@ -28,7 +28,7 @@ API EGI consumate:
 ## Stack
 
 ```
-Framework  → Next.js 16 (App Router, SSG, ISR, Server Components)
+Framework  → Next.js 15 (App Router, SSG, ISR, Server Components)
 React      → React 19
 3D         → Three.js + @react-three/fiber + @react-three/drei
 Animazioni → GSAP 3 (free: core + ScrollTrigger + Flip) + Splitting.js + Lenis

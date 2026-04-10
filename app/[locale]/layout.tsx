@@ -11,6 +11,8 @@ import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
+import { LenisProvider } from '@/components/layout/LenisProvider';
+import { CustomCursor } from '@/components/ui/CustomCursor';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -57,10 +59,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   const t = await getTranslations({ locale, namespace: 'a11y' });
 
   return (
-    <>
+    <LenisProvider>
       <a href="#main-content" className="skip-to-content">
         {t('skip_to_content')}
       </a>
+      <CustomCursor />
       <Navigation locale={locale} />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         {children}
@@ -75,6 +78,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         src="https://hub.florenceegi.com/build/tracker/analytics-tracker.js"
         defer
       />
-    </>
+    </LenisProvider>
   );
 }
