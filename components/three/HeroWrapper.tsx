@@ -13,11 +13,7 @@ import dynamic from 'next/dynamic';
 const HeroScene = dynamic(() => import('@/components/three/HeroScene'), {
   ssr: false,
   loading: () => (
-    <div className="h-screen w-full bg-[var(--bg)] flex items-center justify-center">
-      <div className="text-[var(--text-muted)] text-sm animate-pulse">
-        Loading...
-      </div>
-    </div>
+    <div className="h-screen w-full bg-[var(--bg)]" />
   ),
 });
 

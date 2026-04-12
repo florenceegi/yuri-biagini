@@ -9,16 +9,29 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { HeroWrapper } from '@/components/three/HeroWrapper';
+import { getArtistArtworks } from '@/lib/egi/client';
+import Image from 'next/image';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export const revalidate = 60;
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'nav' });
+  const tWorks = await getTranslations({ locale, namespace: 'works' });
+
+  let featuredWorks: Awaited<ReturnType<typeof getArtistArtworks>>['data'] = [];
+  try {
+    const result = await getArtistArtworks(1, 6);
+    featuredWorks = result.data;
+  } catch {
+    featuredWorks = [];
+  }
 
   return (
     <>
@@ -45,41 +58,68 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Featured works preview */}
-      <section
-        aria-labelledby="featured-heading"
-        className="py-24 px-6 max-w-7xl mx-auto"
-      >
-        <h2
-          id="featured-heading"
-          className="font-[family-name:var(--font-serif)] text-3xl md:text-5xl font-light text-center mb-16"
+      {/* Featured works — real artworks from EGI API */}
+      {featuredWorks.length > 0 && (
+        <section
+          aria-labelledby="featured-heading"
+          className="py-24 px-6 max-w-7xl mx-auto"
         >
-          {t('works')}
-        </h2>
-
-        {/* Placeholder for featured artworks — will be populated from EGI API */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="aspect-[3/4] bg-[var(--bg-surface)] rounded-lg border border-[var(--border)] flex items-center justify-center"
-            >
-              <span className="text-[var(--text-muted)] text-sm">
-                {t('works')} {i}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <a
-            href={`/${locale}/works`}
-            className="inline-block px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-widest hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 rounded"
+          <h2
+            id="featured-heading"
+            className="font-[family-name:var(--font-serif)] text-3xl md:text-5xl font-light text-center mb-16"
           >
             {t('works')}
-          </a>
-        </div>
-      </section>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredWorks.map((artwork) => (
+              <a
+                key={artwork.id}
+                href={`/${locale}/works/${artwork.id}`}
+                className="group block rounded-lg overflow-hidden border border-[var(--border)] hover:border-[var(--border-hover)] transition-all duration-300 bg-[var(--bg-surface)]"
+              >
+                {artwork.main_image_url ? (
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={artwork.main_image_url}
+                      alt={artwork.title || 'Artwork'}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-end p-4">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm uppercase tracking-widest text-white">
+                        {tWorks('view_on_egi')}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="aspect-[3/4] bg-[var(--bg-elevated)]" />
+                )}
+                <div className="p-4">
+                  <h3 className="text-base font-medium text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                    {artwork.title}
+                  </h3>
+                  {artwork.collection?.name && (
+                    <p className="text-sm text-[var(--text-muted)] mt-1">
+                      {artwork.collection.name}
+                    </p>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <a
+              href={`/${locale}/works`}
+              className="inline-block px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-widest hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 rounded"
+            >
+              {t('works')}
+            </a>
+          </div>
+        </section>
+      )}
     </>
   );
 }
