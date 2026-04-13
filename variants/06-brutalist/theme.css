@@ -1,0 +1,18 @@
+/* Template 06 — Brutalist Statement: Provocatorio, anti-decorativo */
+:root {
+  --bg: #FFFFFF;
+  --bg-surface: #F0F0F0;
+  --bg-elevated: #E0E0E0;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --accent: #FF0000;
+  --accent-hover: #CC0000;
+  --border: 2px solid #000000;
+  --border-hover: 2px solid #FF0000;
+  --focus-ring: rgba(255, 0, 0, 0.6);
+
+  --font-display: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  --font-body: 'Space Mono', 'Courier New', monospace;
+  --transition: 0s;
+}

@@ -1,0 +1,18 @@
+/* Template 01 — Galeria Oscura: Museum-grade dark luxury */
+:root {
+  --bg: #080808;
+  --bg-surface: #111111;
+  --bg-elevated: #161616;
+  --text-primary: #F0EDE8;
+  --text-secondary: #9B9590;
+  --text-muted: #6B6560;
+  --accent: #C8A96E;
+  --accent-hover: #D4BC8A;
+  --border: rgba(240, 237, 232, 0.08);
+  --border-hover: rgba(240, 237, 232, 0.18);
+  --focus-ring: rgba(200, 169, 110, 0.6);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', Helvetica, sans-serif;
+  --transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}

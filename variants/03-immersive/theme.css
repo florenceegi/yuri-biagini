@@ -1,0 +1,18 @@
+/* Template 03 — Immersive 3D: Spaziale, futuristico (base M-045) */
+:root {
+  --bg: #0a0a0a;
+  --bg-surface: #111111;
+  --bg-elevated: #1a1a1a;
+  --text-primary: #E8EDF5;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --accent: #c8a97e;
+  --accent-hover: #dfc4a0;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --focus-ring: rgba(200, 169, 126, 0.6);
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'DM Sans', Helvetica, sans-serif;
+  --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}

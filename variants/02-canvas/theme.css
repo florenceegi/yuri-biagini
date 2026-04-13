@@ -1,0 +1,18 @@
+/* Template 02 — Canvas Vivo: Editoriale, carta, atelier */
+:root {
+  --bg: #F5F2ED;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EDEAE4;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4540;
+  --text-muted: #7A7570;
+  --accent: #C4622D;
+  --accent-hover: #D4784A;
+  --border: rgba(26, 26, 26, 0.10);
+  --border-hover: rgba(26, 26, 26, 0.25);
+  --focus-ring: rgba(196, 98, 45, 0.5);
+
+  --font-display: 'Syne', 'Aktiv Grotesk', sans-serif;
+  --font-body: 'DM Sans', Helvetica, sans-serif;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

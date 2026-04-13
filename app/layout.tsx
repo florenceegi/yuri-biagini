@@ -8,7 +8,9 @@
 
 import type { Metadata } from 'next';
 import { Space_Grotesk, Cormorant_Garamond } from 'next/font/google';
+import { getVariant } from '@/lib/variant';
 import './globals.css';
+import './variants.css';
 
 const sansFont = Space_Grotesk({
   variable: '--font-sans',
@@ -34,8 +36,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const variant = getVariant();
+
   return (
-    <html className={`${sansFont.variable} ${serifFont.variable}`}>
+    <html className={`${sansFont.variable} ${serifFont.variable}`} data-variant={variant}>
       <body>{children}</body>
     </html>
   );
