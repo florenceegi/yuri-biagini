@@ -24,8 +24,11 @@ export interface EgiArtwork {
   description: string | null;
   year: number | null;
   main_image_url: string | null;
+  medium_image_url: string | null;
+  large_image_url: string | null;
   thumbnail_image_url: string | null;
   original_image_url: string | null;
+  blurhash: string | null;
   is_published: boolean;
   collection: {
     id: number;

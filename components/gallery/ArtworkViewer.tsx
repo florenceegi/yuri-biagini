@@ -1,7 +1,7 @@
 /**
  * @package CREATOR-STAGING — ArtworkViewer
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-14
  * @purpose Fullscreen artwork viewer modal with zoom/pan/drag — ported from EGI egi-prism-3d viewer
  */
@@ -9,6 +9,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { EgiArtwork } from '@/lib/egi/client';
 
 interface Props {
@@ -28,6 +29,7 @@ export function ArtworkViewer({ artwork, onClose }: Props) {
     startX: 0, startY: 0, startTx: 0, startTy: 0,
     touchDist: 0, touchCx: 0, touchCy: 0,
   });
+  const overlayRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const areaRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -89,6 +91,35 @@ export function ArtworkViewer({ artwork, onClose }: Props) {
     applyTransform(true);
   }, [applyTransform]);
 
+  /* ── Lock body scroll + block ALL wheel on overlay (native, non-passive) ── */
+  useEffect(() => {
+    if (!artwork) return;
+    const prevOverflow = document.body.style.overflow;
+    const prevHeight = document.body.style.height;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.body.style.height = '100vh';
+    document.documentElement.style.overflow = 'hidden';
+
+    const overlay = overlayRef.current;
+    const blockWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    if (overlay) {
+      overlay.addEventListener('wheel', blockWheel, { passive: false });
+    }
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.height = prevHeight;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      if (overlay) {
+        overlay.removeEventListener('wheel', blockWheel);
+      }
+    };
+  }, [artwork]);
+
   /* ── Open/close animation ── */
   useEffect(() => {
     if (!artwork) return;
@@ -118,7 +149,7 @@ export function ArtworkViewer({ artwork, onClose }: Props) {
     return () => window.removeEventListener('keydown', handler);
   }, [artwork, handleClose, zoomAt, applyTransform, resetZoom]);
 
-  /* ── Mouse/touch events ── */
+  /* ── Mouse/touch events on image area (zoom wheel + drag) ── */
   useEffect(() => {
     const area = areaRef.current;
     if (!area || !artwork) return;
@@ -126,6 +157,7 @@ export function ArtworkViewer({ artwork, onClose }: Props) {
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
+      e.stopPropagation();
       zoomAt(e.deltaY < 0 ? 1.12 : 1 / 1.12, e.clientX, e.clientY);
     };
     const onMouseDown = (e: MouseEvent) => {
@@ -203,12 +235,25 @@ export function ArtworkViewer({ artwork, onClose }: Props) {
 
   if (!artwork) return null;
 
-  const imageUrl = artwork.original_image_url || artwork.main_image_url || '';
+  const imageUrl = artwork.original_image_url || artwork.large_image_url || artwork.medium_image_url || artwork.main_image_url || '';
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[999999] flex items-center justify-center p-5 box-border"
+      ref={overlayRef}
       style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 999999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+        boxSizing: 'border-box',
+        overscrollBehavior: 'none',
+        touchAction: 'none',
         background: open && !closing ? 'rgba(3,3,12,0.91)' : 'rgba(3,3,12,0)',
         backdropFilter: open && !closing ? 'blur(14px)' : 'none',
         transition: 'background 0.35s ease, backdrop-filter 0.35s ease',
@@ -408,6 +453,7 @@ export function ArtworkViewer({ artwork, onClose }: Props) {
           .pv-ctrl-btn { width: 36px; height: 36px; }
         }
       `}</style>
-    </div>
+    </div>,
+    document.body
   );
 }
