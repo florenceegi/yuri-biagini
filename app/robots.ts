@@ -10,7 +10,7 @@ import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://yuri-biagini.florenceegi.com';
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com';
 
   return {
     rules: [

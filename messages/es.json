@@ -137,18 +137,18 @@
     "publications": "Publicaciones"
   },
   "meta": {
-    "title": "Yuri Biagini — Artista",
-    "description": "Sitio oficial de Yuri Biagini. Galeria, exposiciones, biografia y contacto.",
-    "works_title": "Obras — Yuri Biagini",
-    "works_description": "Explora las obras de Yuri Biagini. Galeria completa con detalles y disponibilidad.",
-    "about_title": "Sobre Mi — Yuri Biagini",
-    "about_description": "Biografia y trayectoria artistica de Yuri Biagini.",
-    "exhibitions_title": "Exposiciones — Yuri Biagini",
-    "exhibitions_description": "Exposiciones pasadas y proximas de Yuri Biagini.",
-    "press_title": "Prensa — Yuri Biagini",
-    "press_description": "Articulos y publicaciones sobre Yuri Biagini.",
-    "contact_title": "Contacto — Yuri Biagini",
-    "contact_description": "Contacta a Yuri Biagini para informacion sobre obras y colaboraciones."
+    "title": "Artista",
+    "description": "Galeria, exposiciones, biografia y contacto.",
+    "works_title": "Obras",
+    "works_description": "Galeria completa con detalles y disponibilidad.",
+    "about_title": "Sobre Mi",
+    "about_description": "Biografia y trayectoria artistica.",
+    "exhibitions_title": "Exposiciones",
+    "exhibitions_description": "Exposiciones pasadas y proximas.",
+    "press_title": "Prensa",
+    "press_description": "Articulos y publicaciones.",
+    "contact_title": "Contacto",
+    "contact_description": "Contacta para informacion sobre obras y colaboraciones."
   },
   "errors": {
     "not_found_title": "Pagina No Encontrada",

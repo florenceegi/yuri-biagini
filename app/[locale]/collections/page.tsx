@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'collections' });
   return {
-    title: `${t('title')} — Yuri Biagini`,
-    description: `${t('explore')} Yuri Biagini`,
+    title: `${t('title')} — ${process.env.NEXT_PUBLIC_SITE_NAME || 'Artist'}`,
+    description: `${t('explore')} — ${process.env.NEXT_PUBLIC_SITE_NAME || 'Artist'}`,
   };
 }
 

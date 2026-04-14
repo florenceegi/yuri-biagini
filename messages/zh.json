@@ -137,18 +137,18 @@
     "publications": "出版物"
   },
   "meta": {
-    "title": "Yuri Biagini — 艺术家",
-    "description": "Yuri Biagini官方网站。画廊、展览、传记和联系方式。",
-    "works_title": "作品 — Yuri Biagini",
-    "works_description": "探索Yuri Biagini的作品。完整画廊，包含详情和可购性。",
-    "about_title": "关于 — Yuri Biagini",
-    "about_description": "Yuri Biagini的传记和艺术历程。",
-    "exhibitions_title": "展览 — Yuri Biagini",
-    "exhibitions_description": "Yuri Biagini的往期和即将举办的展览。",
-    "press_title": "媒体 — Yuri Biagini",
-    "press_description": "关于Yuri Biagini的文章和出版物。",
-    "contact_title": "联系 — Yuri Biagini",
-    "contact_description": "联系Yuri Biagini了解作品和合作信息。"
+    "title": "艺术家",
+    "description": "画廊、展览、传记和联系方式。",
+    "works_title": "作品",
+    "works_description": "完整画廊，包含详情和可购性。",
+    "about_title": "关于",
+    "about_description": "传记和艺术历程。",
+    "exhibitions_title": "展览",
+    "exhibitions_description": "往期和即将举办的展览。",
+    "press_title": "媒体",
+    "press_description": "文章和出版物。",
+    "contact_title": "联系",
+    "contact_description": "了解作品和合作信息。"
   },
   "errors": {
     "not_found_title": "页面未找到",

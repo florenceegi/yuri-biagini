@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     // Resend integration — will be configured with RESEND_API_KEY
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_EMAIL_TO || 'yuri@florenceegi.com';
+    const to = process.env.CONTACT_EMAIL_TO || 'info@florenceegi.com';
 
     if (!apiKey) {
       console.warn('RESEND_API_KEY not configured — email not sent');
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Yuri Biagini Website <noreply@florenceegi.com>',
+        from: `${process.env.NEXT_PUBLIC_SITE_NAME || 'Artist'} Website <noreply@florenceegi.com>`,
         to: [to],
         reply_to: data.email,
         subject: `[Contact] ${data.subject}`,
