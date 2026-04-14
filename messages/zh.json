@@ -22,14 +22,16 @@
     "on_loan": "借展中",
     "not_for_sale": "非卖品",
     "view_on_egi": "在FlorenceEGI查看",
-    "no_results": "未找到作品"
+    "no_results": "未找到作品",
+    "no_image": "图片不可用"
   },
   "about": {
     "title": "关于",
     "timeline": "历程",
     "cv_download": "下载简历",
     "ongoing": "进行中",
-    "bio_placeholder": "传记即将推出。"
+    "bio_placeholder": "传记即将推出。",
+    "portrait_alt": "艺术家肖像"
   },
   "exhibitions": {
     "title": "展览",
@@ -40,13 +42,19 @@
     "solo": "个展",
     "group": "群展",
     "fair": "博览会",
-    "institutional": "机构展"
+    "institutional": "机构展",
+    "cms_placeholder": "展览数据将从CMS加载。",
+    "exhibition_placeholder": "展览",
+    "venue_placeholder": "场馆，城市"
   },
   "press": {
     "title": "媒体",
     "read_online": "在线阅读",
     "download_pdf": "下载PDF",
-    "featured": "精选"
+    "featured": "精选",
+    "cms_placeholder": "新闻文章将从CMS加载。",
+    "article_placeholder": "文章",
+    "publication_placeholder": "出版物"
   },
   "contact": {
     "title": "联系",
@@ -62,7 +70,8 @@
     "placeholder_name": "您的姓名",
     "placeholder_email": "您的邮箱",
     "placeholder_subject": "消息主题",
-    "placeholder_message": "请输入您的留言..."
+    "placeholder_message": "请输入您的留言...",
+    "gdpr_consent": "我同意根据GDPR处理我的个人数据。阅读我们的"
   },
   "collections": {
     "title": "系列作品",
@@ -114,7 +123,8 @@
     "step1": "告诉我您的愿景",
     "step2": "我发送草图和报价方案",
     "step3": "我创作作品并定期更新进度",
-    "step4": "交付作品并附带区块链真品证书"
+    "step4": "交付作品并附带区块链真品证书",
+    "gdpr_consent": "我同意根据GDPR处理我的个人数据。阅读我们的"
   },
   "cv": {
     "title": "简历",
@@ -166,5 +176,12 @@
     "cookies": "Cookie政策",
     "terms": "使用条款",
     "powered_by": "由FlorenceEGI区块链认证"
+  },
+  "hero": {
+    "tagline": "艺术家"
+  },
+  "gdpr": {
+    "privacy_policy": "隐私政策",
+    "consent_required": "发送消息需要同意"
   }
 }

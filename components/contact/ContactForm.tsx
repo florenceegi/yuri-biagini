@@ -24,6 +24,9 @@ type Labels = {
   placeholder_email: string;
   placeholder_subject: string;
   placeholder_message: string;
+  gdpr_consent: string;
+  gdpr_privacy_policy: string;
+  gdpr_consent_required: string;
 };
 
 type Props = {
@@ -32,12 +35,20 @@ type Props = {
 
 export function ContactForm({ labels }: Props) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'rate_limit'>('idle');
+  const [gdprError, setGdprError] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('sending');
 
     const form = e.currentTarget;
+    const gdprChecked = (form.elements.namedItem('gdpr_consent') as HTMLInputElement)?.checked;
+    if (!gdprChecked) {
+      setGdprError(true);
+      return;
+    }
+    setGdprError(false);
+    setStatus('sending');
+
     const data = new FormData(form);
 
     // Honeypot check
@@ -141,6 +152,27 @@ export function ContactForm({ labels }: Props) {
           className={`${inputClass} resize-y min-h-[120px]`}
         />
       </div>
+
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="gdpr_consent"
+          name="gdpr_consent"
+          required
+          className="mt-1 accent-[var(--accent)]"
+          onChange={() => setGdprError(false)}
+        />
+        <label htmlFor="gdpr_consent" className="text-xs text-[var(--text-muted)] leading-relaxed">
+          {labels.gdpr_consent}{' '}
+          <a href="https://art.florenceegi.com/legal/privacy" target="_blank" rel="noopener noreferrer"
+             className="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">
+            {labels.gdpr_privacy_policy}
+          </a>
+        </label>
+      </div>
+      {gdprError && (
+        <p role="alert" className="text-red-400 text-xs">{labels.gdpr_consent_required}</p>
+      )}
 
       <button
         type="submit"

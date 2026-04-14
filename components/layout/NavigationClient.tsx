@@ -100,7 +100,7 @@ export function NavigationClient({
             <button onClick={() => setIsMobileOpen(!isMobileOpen)}
               aria-label={isMobileOpen ? closeMenuLabel : openMenuLabel} aria-expanded={isMobileOpen}
               className="lg:hidden text-white text-xs uppercase font-mono font-bold">
-              {isMobileOpen ? '✕' : 'MENU'}
+              {isMobileOpen ? '✕' : openMenuLabel}
             </button>
           </nav>
         </header>
@@ -158,7 +158,7 @@ export function NavigationClient({
             <button onClick={() => setIsMobileOpen(!isMobileOpen)}
               aria-label={isMobileOpen ? closeMenuLabel : openMenuLabel}
               className="text-xs uppercase tracking-widest text-[var(--text-secondary)]">
-              {isMobileOpen ? 'Close' : 'Menu'}
+              {isMobileOpen ? closeMenuLabel : openMenuLabel}
             </button>
           </div>
         </header>

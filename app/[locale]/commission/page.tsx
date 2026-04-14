@@ -29,6 +29,7 @@ export default async function CommissionPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'commission' });
+  const tGdpr = await getTranslations({ locale, namespace: 'gdpr' });
 
   const steps = [t('step1'), t('step2'), t('step3'), t('step4')];
 
@@ -84,6 +85,9 @@ export default async function CommissionPage({ params }: Props) {
               placeholder_description: t('placeholder_description'),
               placeholder_budget: t('placeholder_budget'),
               placeholder_timeline: t('placeholder_timeline'),
+              gdpr_consent: t('gdpr_consent'),
+              gdpr_privacy_policy: tGdpr('privacy_policy'),
+              gdpr_consent_required: tGdpr('consent_required'),
             }}
           />
         </div>

@@ -42,7 +42,7 @@ export default async function ExhibitionsPage({ params }: Props) {
         </h2>
         <div className="border border-[var(--border)] rounded-lg p-8 bg-[var(--bg-surface)] text-center">
           <p className="text-[var(--text-muted)]">
-            Exhibition data will be loaded from Sanity CMS.
+            {t('cms_placeholder')}
           </p>
         </div>
       </div>
@@ -61,10 +61,10 @@ export default async function ExhibitionsPage({ params }: Props) {
             >
               <div>
                 <h3 className="text-lg text-[var(--text-primary)]">
-                  Exhibition {i}
+                  {t('exhibition_placeholder')} {i}
                 </h3>
                 <p className="text-sm text-[var(--text-muted)]">
-                  Venue, City — 2024
+                  {t('venue_placeholder')} — 2024
                 </p>
               </div>
               <span className="text-xs uppercase tracking-widest text-[var(--text-muted)] border border-[var(--border)] px-3 py-1 rounded self-start">

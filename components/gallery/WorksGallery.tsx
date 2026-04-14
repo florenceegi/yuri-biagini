@@ -19,6 +19,7 @@ type Props = {
     all: string;
     view_on_egi: string;
     no_results: string;
+    no_image: string;
   };
 };
 
@@ -103,7 +104,7 @@ export function WorksGallery({ artworks, locale, labels }: Props) {
                 </div>
               ) : (
                 <div className="aspect-[3/4] bg-[var(--bg-elevated)] flex items-center justify-center">
-                  <span className="text-[var(--text-muted)]">No Image</span>
+                  <span className="text-[var(--text-muted)]">{labels.no_image}</span>
                 </div>
               )}
               <div className="p-4">

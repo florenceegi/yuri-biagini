@@ -31,16 +31,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
 
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Creator Staging';
+
   return {
     title: {
       default: t('title'),
-      template: `%s — Yuri Biagini`,
+      template: `%s — ${siteName}`,
     },
     description: t('description'),
     openGraph: {
       type: 'website',
       locale: locale === 'zh' ? 'zh_CN' : `${locale}_${locale.toUpperCase()}`,
-      siteName: 'Yuri Biagini',
+      siteName,
+    },
+    twitter: {
+      card: 'summary_large_image',
     },
     alternates: {
       languages: Object.fromEntries(
@@ -83,7 +88,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <Footer locale={locale} />
       <script
         dangerouslySetInnerHTML={{
-          __html: `window.FEAnalyticsConfig={siteId:'yuri-biagini',endpoint:'https://hub.florenceegi.com/api/analytics/collect',requireConsent:false};`,
+          __html: `window.FEAnalyticsConfig={siteId:'${process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging'}',endpoint:'${process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT || 'https://hub.florenceegi.com/api/analytics/collect'}',requireConsent:false};`,
         }}
       />
       <script

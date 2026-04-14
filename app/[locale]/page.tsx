@@ -34,6 +34,7 @@ export default async function HomePage({ params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'nav' });
   const tWorks = await getTranslations({ locale, namespace: 'works' });
+  const tHero = await getTranslations({ locale, namespace: 'hero' });
   const variant = await getVariant();
   const sceneId = await getScene();
   const has3D = sceneId !== 'none';
@@ -63,21 +64,21 @@ export default async function HomePage({ params }: Props) {
           {variant === '01' && (
             <HeroOscura
               artistName={artistName}
-              tagline="Artist"
+              tagline={tHero('tagline')}
               featuredWork={has3D ? null : (featuredWorks[0] || null)}
             />
           )}
           {variant === '02' && (
             <HeroCanvas
               artistName={artistName}
-              tagline="Artist"
+              tagline={tHero('tagline')}
               scrollLabel={tWorks('view_on_egi')}
               featuredWork={featuredWorks[0] || null}
               locale={locale}
             />
           )}
           {variant === '03' && (
-            <HeroImmersive artistName={artistName} subtitle="Artist" />
+            <HeroImmersive artistName={artistName} subtitle={tHero('tagline')} />
           )}
           {variant === '04' && (
             <HeroScrollytelling artistName={artistName} birthYear="1990" />

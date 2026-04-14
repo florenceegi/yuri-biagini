@@ -26,6 +26,9 @@ type Labels = {
   placeholder_description: string;
   placeholder_budget: string;
   placeholder_timeline: string;
+  gdpr_consent: string;
+  gdpr_privacy_policy: string;
+  gdpr_consent_required: string;
 };
 
 type Props = {
@@ -34,12 +37,20 @@ type Props = {
 
 export function CommissionForm({ labels }: Props) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'rate_limit'>('idle');
+  const [gdprError, setGdprError] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('sending');
 
     const form = e.currentTarget;
+    const gdprChecked = (form.elements.namedItem('gdpr_consent') as HTMLInputElement)?.checked;
+    if (!gdprChecked) {
+      setGdprError(true);
+      return;
+    }
+    setGdprError(false);
+    setStatus('sending');
+
     const data = new FormData(form);
 
     if (data.get('website')) {
@@ -122,6 +133,27 @@ export function CommissionForm({ labels }: Props) {
           <input id="commission-timeline" name="timeline" type="text" placeholder={labels.placeholder_timeline} className={inputClass} />
         </div>
       </div>
+
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="commission-gdpr"
+          name="gdpr_consent"
+          required
+          className="mt-1 accent-[var(--accent)]"
+          onChange={() => setGdprError(false)}
+        />
+        <label htmlFor="commission-gdpr" className="text-xs text-[var(--text-muted)] leading-relaxed">
+          {labels.gdpr_consent}{' '}
+          <a href="https://art.florenceegi.com/legal/privacy" target="_blank" rel="noopener noreferrer"
+             className="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">
+            {labels.gdpr_privacy_policy}
+          </a>
+        </label>
+      </div>
+      {gdprError && (
+        <p role="alert" className="text-red-400 text-xs">{labels.gdpr_consent_required}</p>
+      )}
 
       <button
         type="submit"

@@ -44,10 +44,10 @@ export default async function PressPage({ params }: Props) {
           >
             <div>
               <h2 className="text-lg text-[var(--text-primary)]">
-                Press Article {i}
+                {t('article_placeholder')} {i}
               </h2>
               <p className="text-sm text-[var(--text-muted)] mt-1">
-                Publication Name — 2024
+                {t('publication_placeholder')} — 2024
               </p>
             </div>
             <div className="flex gap-3">

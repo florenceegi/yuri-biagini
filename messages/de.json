@@ -22,14 +22,16 @@
     "on_loan": "Ausgeliehen",
     "not_for_sale": "Nicht verkaeuflich",
     "view_on_egi": "Auf FlorenceEGI ansehen",
-    "no_results": "Keine Werke gefunden"
+    "no_results": "Keine Werke gefunden",
+    "no_image": "Bild nicht verfügbar"
   },
   "about": {
     "title": "Ueber Mich",
     "timeline": "Werdegang",
     "cv_download": "Lebenslauf herunterladen",
     "ongoing": "Laufend",
-    "bio_placeholder": "Biografie folgt in Kuerze."
+    "bio_placeholder": "Biografie folgt in Kuerze.",
+    "portrait_alt": "Porträt des Künstlers"
   },
   "exhibitions": {
     "title": "Ausstellungen",
@@ -40,13 +42,19 @@
     "solo": "Einzelausstellung",
     "group": "Gruppenausstellung",
     "fair": "Messe",
-    "institutional": "Institutionell"
+    "institutional": "Institutionell",
+    "cms_placeholder": "Die Ausstellungsdaten werden vom CMS geladen.",
+    "exhibition_placeholder": "Ausstellung",
+    "venue_placeholder": "Veranstaltungsort, Stadt"
   },
   "press": {
     "title": "Presse",
     "read_online": "Online lesen",
     "download_pdf": "PDF herunterladen",
-    "featured": "Hervorgehoben"
+    "featured": "Hervorgehoben",
+    "cms_placeholder": "Die Presseartikel werden vom CMS geladen.",
+    "article_placeholder": "Artikel",
+    "publication_placeholder": "Publikation"
   },
   "contact": {
     "title": "Kontakt",
@@ -62,7 +70,8 @@
     "placeholder_name": "Ihr Name",
     "placeholder_email": "Ihre E-Mail",
     "placeholder_subject": "Betreff der Nachricht",
-    "placeholder_message": "Schreiben Sie Ihre Nachricht..."
+    "placeholder_message": "Schreiben Sie Ihre Nachricht...",
+    "gdpr_consent": "Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß DSGVO zu. Lesen Sie unsere"
   },
   "collections": {
     "title": "Sammlungen",
@@ -114,7 +123,8 @@
     "step1": "Erzaehlen Sie mir Ihre Vision",
     "step2": "Ich sende Ihnen einen Vorschlag mit Skizze und Kostenvoranschlag",
     "step3": "Ich erstelle das Werk mit regelmaessigen Updates",
-    "step4": "Lieferung mit Blockchain-Echtheitszertifikat"
+    "step4": "Lieferung mit Blockchain-Echtheitszertifikat",
+    "gdpr_consent": "Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß DSGVO zu. Lesen Sie unsere"
   },
   "cv": {
     "title": "Lebenslauf",
@@ -166,5 +176,12 @@
     "cookies": "Cookies",
     "terms": "AGB",
     "powered_by": "Blockchain-zertifiziert von FlorenceEGI"
+  },
+  "hero": {
+    "tagline": "Künstler"
+  },
+  "gdpr": {
+    "privacy_policy": "Datenschutzerklärung",
+    "consent_required": "Die Zustimmung ist erforderlich, um die Nachricht zu senden"
   }
 }

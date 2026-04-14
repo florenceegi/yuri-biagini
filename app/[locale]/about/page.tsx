@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { getArtistTimeline } from '@/lib/egi/client';
 import type { EgiTimelineResponse } from '@/lib/egi/client';
 import type { Metadata } from 'next';
+import DOMPurify from 'isomorphic-dompurify';
 
 const dotColors: Record<string, string> = {
   milestone: 'bg-yellow-400 border-yellow-400/40',
@@ -79,7 +80,7 @@ export default async function AboutPage({ params }: Props) {
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[var(--text-muted)] text-sm">Portrait</span>
+                  <span className="text-[var(--text-muted)] text-sm">{t('portrait_alt')}</span>
                 </div>
               )}
             </div>
@@ -90,7 +91,7 @@ export default async function AboutPage({ params }: Props) {
             {biography ? (
               <div
                 className="about-bio-text text-[var(--text-secondary)] leading-relaxed text-lg prose prose-invert max-w-none prose-p:text-[var(--text-secondary)] prose-p:leading-relaxed prose-p:text-lg"
-                dangerouslySetInnerHTML={{ __html: biography.content }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(biography.content) }}
               />
             ) : (
               <p className="about-bio-text text-[var(--text-secondary)] leading-relaxed text-lg">

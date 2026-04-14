@@ -149,7 +149,7 @@ export default async function CVPage({ params }: Props) {
         {/* Fallback if no data */}
         {chapters.length === 0 && (
           <p className="text-center text-[var(--text-muted)] py-20">
-            Curriculum Vitae
+            {t('title')}
           </p>
         )}
       </div>

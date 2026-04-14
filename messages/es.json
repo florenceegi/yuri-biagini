@@ -22,14 +22,16 @@
     "on_loan": "En prestamo",
     "not_for_sale": "No en venta",
     "view_on_egi": "Ver en FlorenceEGI",
-    "no_results": "No se encontraron obras"
+    "no_results": "No se encontraron obras",
+    "no_image": "Imagen no disponible"
   },
   "about": {
     "title": "Sobre Mi",
     "timeline": "Trayectoria",
     "cv_download": "Descargar CV",
     "ongoing": "En curso",
-    "bio_placeholder": "Biografia proximamente."
+    "bio_placeholder": "Biografia proximamente.",
+    "portrait_alt": "Retrato del artista"
   },
   "exhibitions": {
     "title": "Exposiciones",
@@ -40,13 +42,19 @@
     "solo": "Individual",
     "group": "Colectiva",
     "fair": "Feria",
-    "institutional": "Institucional"
+    "institutional": "Institucional",
+    "cms_placeholder": "Los datos de las exposiciones se cargarán desde el CMS.",
+    "exhibition_placeholder": "Exposición",
+    "venue_placeholder": "Sede, Ciudad"
   },
   "press": {
     "title": "Prensa",
     "read_online": "Leer en Linea",
     "download_pdf": "Descargar PDF",
-    "featured": "Destacado"
+    "featured": "Destacado",
+    "cms_placeholder": "Los artículos de prensa se cargarán desde el CMS.",
+    "article_placeholder": "Artículo",
+    "publication_placeholder": "Publicación"
   },
   "contact": {
     "title": "Contacto",
@@ -62,7 +70,8 @@
     "placeholder_name": "Tu nombre",
     "placeholder_email": "Tu correo",
     "placeholder_subject": "Asunto del mensaje",
-    "placeholder_message": "Escribe tu mensaje..."
+    "placeholder_message": "Escribe tu mensaje...",
+    "gdpr_consent": "Consiento el tratamiento de mis datos personales según el RGPD. Lea nuestra"
   },
   "collections": {
     "title": "Colecciones",
@@ -114,7 +123,8 @@
     "step1": "Cuentame tu vision",
     "step2": "Te envio una propuesta con boceto y presupuesto",
     "step3": "Realizo la obra con actualizaciones periodicas",
-    "step4": "Entrega con certificado blockchain de autenticidad"
+    "step4": "Entrega con certificado blockchain de autenticidad",
+    "gdpr_consent": "Consiento el tratamiento de mis datos personales según el RGPD. Lea nuestra"
   },
   "cv": {
     "title": "Curriculum Vitae",
@@ -166,5 +176,12 @@
     "cookies": "Cookies",
     "terms": "Terminos",
     "powered_by": "Certificado en blockchain por FlorenceEGI"
+  },
+  "hero": {
+    "tagline": "Artista"
+  },
+  "gdpr": {
+    "privacy_policy": "política de privacidad",
+    "consent_required": "El consentimiento es obligatorio para enviar el mensaje"
   }
 }

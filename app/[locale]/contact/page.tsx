@@ -29,6 +29,7 @@ export default async function ContactPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'contact' });
+  const tGdpr = await getTranslations({ locale, namespace: 'gdpr' });
 
   return (
     <section className="py-24 px-6 max-w-2xl mx-auto">
@@ -51,6 +52,9 @@ export default async function ContactPage({ params }: Props) {
           placeholder_email: t('placeholder_email'),
           placeholder_subject: t('placeholder_subject'),
           placeholder_message: t('placeholder_message'),
+          gdpr_consent: t('gdpr_consent'),
+          gdpr_privacy_policy: tGdpr('privacy_policy'),
+          gdpr_consent_required: tGdpr('consent_required'),
         }}
       />
     </section>

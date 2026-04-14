@@ -54,6 +54,7 @@ export default async function WorksPage({ params }: Props) {
           all: t('all'),
           view_on_egi: t('view_on_egi'),
           no_results: t('no_results'),
+          no_image: t('no_image'),
         }}
       />
     </section>

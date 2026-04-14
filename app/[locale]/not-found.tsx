@@ -24,7 +24,7 @@ export default async function NotFound() {
       </p>
       {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
       <a
-        href="/it/works"
+        href="/"
         className="inline-block px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-widest hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 rounded"
       >
         {t('not_found_cta')}

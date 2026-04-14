@@ -22,14 +22,16 @@
     "on_loan": "On Loan",
     "not_for_sale": "Not for Sale",
     "view_on_egi": "View on FlorenceEGI",
-    "no_results": "No works found"
+    "no_results": "No works found",
+    "no_image": "Image not available"
   },
   "about": {
     "title": "About",
     "timeline": "Journey",
     "cv_download": "Download CV",
     "ongoing": "Ongoing",
-    "bio_placeholder": "Biography coming soon."
+    "bio_placeholder": "Biography coming soon.",
+    "portrait_alt": "Artist portrait"
   },
   "exhibitions": {
     "title": "Exhibitions",
@@ -40,13 +42,19 @@
     "solo": "Solo",
     "group": "Group",
     "fair": "Fair",
-    "institutional": "Institutional"
+    "institutional": "Institutional",
+    "cms_placeholder": "Exhibition data will be loaded from CMS.",
+    "exhibition_placeholder": "Exhibition",
+    "venue_placeholder": "Venue, City"
   },
   "press": {
     "title": "Press",
     "read_online": "Read Online",
     "download_pdf": "Download PDF",
-    "featured": "Featured"
+    "featured": "Featured",
+    "cms_placeholder": "Press articles will be loaded from CMS.",
+    "article_placeholder": "Article",
+    "publication_placeholder": "Publication"
   },
   "contact": {
     "title": "Contact",
@@ -62,7 +70,8 @@
     "placeholder_name": "Your name",
     "placeholder_email": "Your email",
     "placeholder_subject": "Message subject",
-    "placeholder_message": "Write your message..."
+    "placeholder_message": "Write your message...",
+    "gdpr_consent": "I consent to the processing of my personal data under GDPR. Read our"
   },
   "collections": {
     "title": "Collections",
@@ -114,7 +123,8 @@
     "step1": "Tell me your vision",
     "step2": "I send you a proposal with sketch and quote",
     "step3": "I create the work with periodic updates",
-    "step4": "Delivery with blockchain certificate of authenticity"
+    "step4": "Delivery with blockchain certificate of authenticity",
+    "gdpr_consent": "I consent to the processing of my personal data under GDPR. Read our"
   },
   "cv": {
     "title": "Curriculum Vitae",
@@ -166,5 +176,12 @@
     "cookies": "Cookies",
     "terms": "Terms",
     "powered_by": "Blockchain certified by FlorenceEGI"
+  },
+  "hero": {
+    "tagline": "Artist"
+  },
+  "gdpr": {
+    "privacy_policy": "privacy policy",
+    "consent_required": "Consent is required to send the message"
   }
 }
