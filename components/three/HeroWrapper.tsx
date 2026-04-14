@@ -1,22 +1,15 @@
 /**
  * @package YURI-BIAGINI — HeroWrapper
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
- * @date 2026-04-10
- * @purpose Client component wrapper for dynamic Three.js hero (ssr:false requires client boundary)
+ * @version 2.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @date 2026-04-13
+ * @purpose Renders the active 3D scene — switchable via cookie/switcher
  */
 
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const HeroScene = dynamic(() => import('@/components/three/HeroScene'), {
-  ssr: false,
-  loading: () => (
-    <div className="h-screen w-full bg-[var(--bg)]" />
-  ),
-});
+import { Scene3DSwitch } from '@/components/three/Scene3DSwitch';
 
 export function HeroWrapper() {
-  return <HeroScene />;
+  return <Scene3DSwitch />;
 }

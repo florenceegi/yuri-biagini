@@ -1,9 +1,9 @@
 /**
  * @package YURI-BIAGINI — Template Variant Overrides
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 2.0.0 (FlorenceEGI — YURI-BIAGINI)
  * @date 2026-04-13
- * @purpose CSS custom properties per variant — activated by data-variant on <html>
+ * @purpose Full visual layer per variant — palette, fonts, spacing, transitions
  */
 
 /* 01 — Galeria Oscura: Museum-grade dark luxury */
@@ -19,6 +19,8 @@
   --border: rgba(240, 237, 232, 0.08);
   --border-hover: rgba(240, 237, 232, 0.18);
   --focus-ring: rgba(200, 169, 110, 0.6);
+  --font-display: var(--font-serif);
+  --transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 02 — Canvas Vivo: Editoriale, carta, atelier */
@@ -34,6 +36,12 @@
   --border: rgba(26, 26, 26, 0.10);
   --border-hover: rgba(26, 26, 26, 0.25);
   --focus-ring: rgba(196, 98, 45, 0.5);
+  --font-display: var(--font-syne);
+  --font-serif: var(--font-dm-serif);
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-variant="02"] body {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
 }
 
 /* 03 — Immersive 3D: Spaziale, futuristico (base) */
@@ -49,6 +57,8 @@
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.16);
   --focus-ring: rgba(200, 169, 126, 0.6);
+  --font-display: var(--font-sans);
+  --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 04 — Scrollytelling: Narrativo, cinematografico */
@@ -64,9 +74,15 @@
   --border: rgba(28, 27, 25, 0.10);
   --border-hover: rgba(28, 27, 25, 0.20);
   --focus-ring: rgba(212, 168, 83, 0.5);
+  --font-display: var(--font-libre);
+  --font-serif: var(--font-libre);
+  --transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-variant="04"] body {
+  font-family: var(--font-libre), Georgia, serif;
 }
 
-/* 05 — Magazine Art: Editoriale, Bento grid, rivista */
+/* 05 — Magazine Art: Bento grid, rivista di lusso */
 [data-variant="05"] {
   --bg: #FFFFFF;
   --bg-surface: #F7F6F4;
@@ -79,6 +95,9 @@
   --border: rgba(17, 17, 17, 0.10);
   --border-hover: rgba(17, 17, 17, 0.25);
   --focus-ring: rgba(230, 57, 70, 0.5);
+  --font-display: var(--font-syne);
+  --font-serif: var(--font-libre);
+  --transition: 0.3s ease;
 }
 
 /* 06 — Brutalist Statement: Provocatorio, anti-decorativo */
@@ -94,4 +113,12 @@
   --border: rgba(0, 0, 0, 0.15);
   --border-hover: rgba(255, 0, 0, 0.4);
   --focus-ring: rgba(255, 0, 0, 0.6);
+  --font-display: var(--font-sans);
+  --transition: 0s;
+}
+[data-variant="06"] body {
+  font-family: var(--font-mono), 'Courier New', monospace;
+}
+[data-variant="06"] * {
+  border-radius: 0 !important;
 }

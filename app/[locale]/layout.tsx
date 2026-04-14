@@ -14,6 +14,7 @@ import { Footer } from '@/components/layout/Footer';
 import { LenisProvider } from '@/components/layout/LenisProvider';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { PageTransition } from '@/components/layout/PageTransition';
+import { VariantSwitcher } from '@/components/ui/VariantSwitcher';
 import { personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
 
@@ -74,6 +75,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         {t('skip_to_content')}
       </a>
       <CustomCursor />
+      <VariantSwitcher />
       <Navigation locale={locale} />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         <PageTransition>{children}</PageTransition>

@@ -1,9 +1,9 @@
 /**
  * @package YURI-BIAGINI — PageTransition
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
- * @date 2026-04-10
- * @purpose Fade-in transition on route change with GSAP — respects reduced-motion (R4)
+ * @version 2.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @date 2026-04-13
+ * @purpose Animated page transition — uses active animation preset
  */
 
 'use client';
@@ -12,6 +12,7 @@ import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion';
+import { useAnimation } from '@/lib/hooks/useAnimation';
 
 type Props = {
   children: React.ReactNode;
@@ -21,21 +22,18 @@ export function PageTransition({ children }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const prefersReducedMotion = useReducedMotion();
+  const anim = useAnimation();
 
   useEffect(() => {
-    if (prefersReducedMotion || !containerRef.current) return;
+    if (prefersReducedMotion || !containerRef.current || anim.id === 'none') return;
 
     const el = containerRef.current;
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
-    );
+    gsap.fromTo(el, anim.pageTransition.from, anim.pageTransition.to);
 
     return () => {
       gsap.killTweensOf(el);
     };
-  }, [pathname, prefersReducedMotion]);
+  }, [pathname, prefersReducedMotion, anim]);
 
   return <div ref={containerRef}>{children}</div>;
 }
