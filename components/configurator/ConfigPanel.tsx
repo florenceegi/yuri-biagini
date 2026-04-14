@@ -18,36 +18,25 @@ import { CommissionCTA } from './CommissionCTA';
 
 /* ── Catalogue ──────────────────────────────────────────────── */
 
-const TEMPLATES: { id: VariantId; name: string; desc: string; color: string }[] = [
-  { id: '01', name: 'Galeria Oscura',       desc: 'Dark, cinematic, gallery-first',     color: '#C8A96E' },
-  { id: '02', name: 'Canvas Vivo',          desc: 'Warm, organic, paint-like',          color: '#C4622D' },
-  { id: '03', name: 'Immersive 3D',         desc: 'Spatial depth, floating elements',   color: '#c8a97e' },
-  { id: '04', name: 'Scrollytelling',       desc: 'Narrative vertical, editorial',      color: '#D4A853' },
-  { id: '05', name: 'Magazine Art',         desc: 'Grid-heavy, bold typography',        color: '#E63946' },
-  { id: '06', name: 'Brutalist Statement',  desc: 'Raw, high contrast, statement',      color: '#FF0000' },
-];
+/* Brand names — not translated (like "iPhone", "MacBook Air") */
+const TEMPLATE_IDS: VariantId[] = ['01', '02', '03', '04', '05', '06'];
+const TEMPLATE_NAMES: Record<VariantId, string> = {
+  '01': 'Galeria Oscura', '02': 'Canvas Vivo', '03': 'Immersive 3D',
+  '04': 'Scrollytelling', '05': 'Magazine Art', '06': 'Brutalist Statement',
+};
+const TEMPLATE_COLORS: Record<VariantId, string> = {
+  '01': '#C8A96E', '02': '#C4622D', '03': '#c8a97e',
+  '04': '#D4A853', '05': '#E63946', '06': '#FF0000',
+};
 
-const ANIMATIONS: { id: AnimationId; name: string; icon: string }[] = [
-  { id: 'minimal',   name: 'Minimal',    icon: '○' },
-  { id: 'cinematic', name: 'Cinematic',  icon: '◐' },
-  { id: 'energetic', name: 'Energetic',  icon: '⚡' },
-  { id: 'editorial', name: 'Editorial',  icon: '▤' },
-  { id: 'fluid',     name: 'Fluid',      icon: '◎' },
-  { id: 'none',      name: 'None',       icon: '—' },
-];
+const ANIMATION_IDS: AnimationId[] = ['minimal', 'cinematic', 'energetic', 'editorial', 'fluid', 'none'];
+const ANIMATION_ICONS: Record<AnimationId, string> = {
+  minimal: '○', cinematic: '◐', energetic: '⚡', editorial: '▤', fluid: '◎', none: '—',
+};
 
-const SCENES: { id: SceneId; name: string }[] = [
-  { id: 'particles',         name: 'Particle Field' },
-  { id: 'morph-sphere',      name: 'Morphing Sphere' },
-  { id: 'wave-grid',         name: 'Wave Grid' },
-  { id: 'floating-gallery',  name: 'Floating Gallery' },
-  { id: 'ribbon-flow',       name: 'Ribbon Flow' },
-  { id: 'crystal',           name: 'Crystal' },
-  { id: 'noise-terrain',     name: 'Noise Terrain' },
-  { id: 'aurora',            name: 'Aurora' },
-  { id: 'dot-sphere',        name: 'Dot Sphere' },
-  { id: 'smoke',             name: 'Smoke' },
-  { id: 'none',              name: 'No 3D' },
+const SCENE_IDS: SceneId[] = [
+  'particles', 'morph-sphere', 'wave-grid', 'floating-gallery', 'ribbon-flow',
+  'crystal', 'noise-terrain', 'aurora', 'dot-sphere', 'smoke', 'none',
 ];
 
 type Tab = 'template' | 'animation' | '3d' | 'site';
@@ -60,6 +49,18 @@ interface ConfigPanelProps {
     tab_animation: string;
     tab_3d: string;
     tab_site: string;
+    /* Template descriptions (i18n) */
+    tpl_01: string; tpl_02: string; tpl_03: string;
+    tpl_04: string; tpl_05: string; tpl_06: string;
+    /* Animation names (i18n) */
+    anim_minimal: string; anim_cinematic: string; anim_energetic: string;
+    anim_editorial: string; anim_fluid: string; anim_none: string;
+    /* Scene names (i18n) */
+    scene_particles: string; scene_morph_sphere: string; scene_wave_grid: string;
+    scene_floating_gallery: string; scene_ribbon_flow: string; scene_crystal: string;
+    scene_noise_terrain: string; scene_aurora: string; scene_dot_sphere: string;
+    scene_smoke: string; scene_none: string;
+    /* Site tab */
     subdomain_title: string;
     subdomain_placeholder: string;
     subdomain_suffix: string;
@@ -96,7 +97,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
   if (siteMode !== 'configurator') return null;
   if (isLoading || !isAuthenticated) return null;
 
-  const activeTemplate = TEMPLATES.find((t) => t.id === currentVariant);
+  const activeColor = TEMPLATE_COLORS[currentVariant] || '#c8a97e';
 
   return (
     <div className="fixed top-4 right-4 z-[9999]" style={{ fontFamily: 'system-ui, sans-serif' }}>
@@ -106,14 +107,14 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
         className="group flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg backdrop-blur-sm border transition-all duration-300"
         style={{
           backgroundColor: 'rgba(0,0,0,0.75)',
-          borderColor: activeTemplate?.color || 'rgba(255,255,255,0.15)',
+          borderColor: activeColor,
         }}
         aria-label={labels.toggle}
         aria-expanded={isOpen}
       >
         <span
           className="w-3 h-3 rounded-full flex-shrink-0"
-          style={{ backgroundColor: activeTemplate?.color }}
+          style={{ backgroundColor: activeColor }}
         />
         <span className="text-xs text-white/80 font-medium tracking-wide uppercase">
           {isOpen ? '✕' : labels.toggle}
@@ -150,52 +151,49 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
             {/* Templates */}
             {tab === 'template' && (
               <div className="space-y-0.5">
-                {TEMPLATES.map(({ id, name, desc, color }) => (
-                  <button
-                    key={id}
-                    onClick={() => switchTo('variant', id)}
-                    className={`w-full flex items-center gap-3 px-3 py-3 text-left rounded-lg transition-colors ${
-                      id === currentVariant
-                        ? 'bg-[var(--bg-elevated)]'
-                        : 'hover:bg-[var(--bg-elevated)]/50'
-                    }`}
-                  >
-                    <span
-                      className="w-4 h-4 rounded-full flex-shrink-0 border border-[var(--border)]"
-                      style={{ backgroundColor: color }}
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm text-[var(--text-primary)] font-medium">
-                        <span className="text-[var(--text-muted)] mr-1">{id}</span> {name}
+                {TEMPLATE_IDS.map((id) => {
+                  const desc = labels[`tpl_${id}` as keyof typeof labels];
+                  return (
+                    <button
+                      key={id}
+                      onClick={() => switchTo('variant', id)}
+                      className={`w-full flex items-center gap-3 px-3 py-3 text-left rounded-lg transition-colors ${
+                        id === currentVariant ? 'bg-[var(--bg-elevated)]' : 'hover:bg-[var(--bg-elevated)]/50'
+                      }`}
+                    >
+                      <span
+                        className="w-4 h-4 rounded-full flex-shrink-0 border border-[var(--border)]"
+                        style={{ backgroundColor: TEMPLATE_COLORS[id] }}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm text-[var(--text-primary)] font-medium">
+                          <span className="text-[var(--text-muted)] mr-1">{id}</span> {TEMPLATE_NAMES[id]}
+                        </div>
+                        <div className="text-[10px] text-[var(--text-muted)] truncate">{desc}</div>
                       </div>
-                      <div className="text-[10px] text-[var(--text-muted)] truncate">{desc}</div>
-                    </div>
-                    {id === currentVariant && (
-                      <span className="text-[var(--accent)] text-xs">●</span>
-                    )}
-                  </button>
-                ))}
+                      {id === currentVariant && <span className="text-[var(--accent)] text-xs">●</span>}
+                    </button>
+                  );
+                })}
               </div>
             )}
 
             {/* Animations */}
             {tab === 'animation' && (
               <div className="space-y-0.5">
-                {ANIMATIONS.map(({ id, name, icon }) => (
+                {ANIMATION_IDS.map((id) => (
                   <button
                     key={id}
                     onClick={() => switchTo('animation', id)}
                     className={`w-full flex items-center gap-3 px-3 py-3 text-left rounded-lg transition-colors ${
-                      id === currentAnimation
-                        ? 'bg-[var(--bg-elevated)]'
-                        : 'hover:bg-[var(--bg-elevated)]/50'
+                      id === currentAnimation ? 'bg-[var(--bg-elevated)]' : 'hover:bg-[var(--bg-elevated)]/50'
                     }`}
                   >
-                    <span className="w-6 text-center text-base text-[var(--text-muted)]">{icon}</span>
-                    <span className="text-sm text-[var(--text-primary)]">{name}</span>
-                    {id === currentAnimation && (
-                      <span className="ml-auto text-[var(--accent)] text-xs">●</span>
-                    )}
+                    <span className="w-6 text-center text-base text-[var(--text-muted)]">{ANIMATION_ICONS[id]}</span>
+                    <span className="text-sm text-[var(--text-primary)]">
+                      {labels[`anim_${id}` as keyof typeof labels]}
+                    </span>
+                    {id === currentAnimation && <span className="ml-auto text-[var(--accent)] text-xs">●</span>}
                   </button>
                 ))}
               </div>
@@ -204,23 +202,21 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
             {/* 3D Scenes */}
             {tab === '3d' && (
               <div className="space-y-0.5">
-                {SCENES.map(({ id, name }) => (
+                {SCENE_IDS.map((id) => (
                   <button
                     key={id}
                     onClick={() => switchTo('scene', id)}
                     className={`w-full flex items-center gap-3 px-3 py-3 text-left rounded-lg transition-colors ${
-                      id === currentScene
-                        ? 'bg-[var(--bg-elevated)]'
-                        : 'hover:bg-[var(--bg-elevated)]/50'
+                      id === currentScene ? 'bg-[var(--bg-elevated)]' : 'hover:bg-[var(--bg-elevated)]/50'
                     }`}
                   >
                     <span className="w-6 text-center text-xs text-[var(--text-muted)] font-mono">
                       {id === 'none' ? '—' : '◆'}
                     </span>
-                    <span className="text-sm text-[var(--text-primary)]">{name}</span>
-                    {id === currentScene && (
-                      <span className="ml-auto text-[var(--accent)] text-xs">●</span>
-                    )}
+                    <span className="text-sm text-[var(--text-primary)]">
+                      {labels[`scene_${id.replace('-', '_')}` as keyof typeof labels]}
+                    </span>
+                    {id === currentScene && <span className="ml-auto text-[var(--accent)] text-xs">●</span>}
                   </button>
                 ))}
               </div>
@@ -253,7 +249,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
 
           {/* Footer — current combo */}
           <div className="px-3 py-2 bg-[var(--bg-elevated)] border-t border-[var(--border)] text-[9px] text-[var(--text-muted)] text-center flex-shrink-0">
-            {activeTemplate?.name || currentVariant} × {currentAnimation} × {currentScene}
+            {TEMPLATE_NAMES[currentVariant]} × {currentAnimation} × {currentScene}
           </div>
         </div>
       )}
