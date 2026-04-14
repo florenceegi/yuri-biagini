@@ -59,14 +59,15 @@ export function CommissionForm({ labels }: Props) {
     }
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/commission', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: data.get('name'),
           email: data.get('email'),
-          subject: `[COMMISSION] ${data.get('name')}`,
-          message: `Budget: ${data.get('budget')}\nTimeline: ${data.get('timeline')}\n\n${data.get('description')}`,
+          description: data.get('description'),
+          budget: data.get('budget'),
+          timeline: data.get('timeline'),
         }),
       });
 
