@@ -8,9 +8,10 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import type { EgiArtwork } from '@/lib/egi/client';
+import { ArtworkViewer } from './ArtworkViewer';
 
 type Props = {
   artworks: EgiArtwork[];
@@ -25,6 +26,8 @@ type Props = {
 
 export function WorksGallery({ artworks, locale, labels }: Props) {
   const [filter, setFilter] = useState<string | null>(null);
+  const [viewerArtwork, setViewerArtwork] = useState<EgiArtwork | null>(null);
+  const closeViewer = useCallback(() => setViewerArtwork(null), []);
 
   const collections = Array.from(
     new Set(
@@ -80,13 +83,18 @@ export function WorksGallery({ artworks, locale, labels }: Props) {
       ) : (
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           {filtered.map((artwork) => (
-            <a
+            <div
               key={artwork.id}
-              href={`/${locale}/works/${artwork.id}`}
-              className="group block break-inside-avoid rounded-lg overflow-hidden border border-[var(--border)] hover:border-[var(--border-hover)] transition-all duration-300 bg-[var(--bg-surface)]"
+              className="group break-inside-avoid rounded-lg overflow-hidden border border-[var(--border)] hover:border-[var(--border-hover)] transition-all duration-300 bg-[var(--bg-surface)]"
             >
               {artwork.main_image_url ? (
-                <div className="relative overflow-hidden">
+                <div
+                  className="relative overflow-hidden cursor-pointer"
+                  onClick={() => setViewerArtwork(artwork)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter') setViewerArtwork(artwork); }}
+                >
                   <Image
                     src={artwork.main_image_url}
                     alt={artwork.title || 'Artwork'}
@@ -97,9 +105,9 @@ export function WorksGallery({ artworks, locale, labels }: Props) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm uppercase tracking-widest text-white">
-                      {labels.view_on_egi}
-                    </span>
+                    <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
                   </div>
                 </div>
               ) : (
@@ -107,7 +115,7 @@ export function WorksGallery({ artworks, locale, labels }: Props) {
                   <span className="text-[var(--text-muted)]">{labels.no_image}</span>
                 </div>
               )}
-              <div className="p-4">
+              <a href={`/${locale}/works/${artwork.id}`} className="block p-4">
                 <h3 className="text-base font-medium text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                   {artwork.title}
                 </h3>
@@ -116,11 +124,12 @@ export function WorksGallery({ artworks, locale, labels }: Props) {
                     {artwork.collection.name}
                   </p>
                 )}
-              </div>
-            </a>
+              </a>
+            </div>
           ))}
         </div>
-      )}
+        )}
+        <ArtworkViewer artwork={viewerArtwork} onClose={closeViewer} />
     </div>
   );
 }
