@@ -12,6 +12,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { locales, localeNames, type Locale } from '@/lib/i18n/config';
 import { usePathname } from 'next/navigation';
 import { useVariant } from '@/lib/hooks/useVariant';
+import { useCreator } from '@/lib/creator-context';
 
 type NavLink = { href: string; label: string };
 
@@ -25,13 +26,15 @@ type Props = {
 };
 
 export function NavigationClient({
-  links, locale, artistName, openMenuLabel, closeMenuLabel, changeLangLabel,
+  links, locale, artistName: fallbackName, openMenuLabel, closeMenuLabel, changeLangLabel,
 }: Props) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const pathname = usePathname();
   const variant = useVariant();
+  const { artistName: contextName } = useCreator();
+  const artistName = contextName || fallbackName;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);

@@ -9,7 +9,14 @@
 const EGI_API_URL =
   process.env.NEXT_PUBLIC_EGI_API_URL || 'https://art.florenceegi.com/api';
 
-const ARTIST_ID = process.env.NEXT_PUBLIC_ARTIST_ID || '';
+const DEFAULT_ARTIST_ID = process.env.NEXT_PUBLIC_ARTIST_ID || '';
+
+/** Resolve artist ID: explicit param > env var. Throws if neither available. */
+function resolveArtistId(artistId?: number | string): string {
+  const id = artistId?.toString() || DEFAULT_ARTIST_ID;
+  if (!id) throw new Error('No artist ID available — set NEXT_PUBLIC_ARTIST_ID or pass artistId');
+  return id;
+}
 
 export interface EgiArtwork {
   id: number;
@@ -66,9 +73,10 @@ async function egiGet<T>(path: string): Promise<T> {
   return json;
 }
 
-export async function getArtistProfile(): Promise<EgiArtistProfile> {
+export async function getArtistProfile(artistId?: number | string): Promise<EgiArtistProfile> {
+  const id = resolveArtistId(artistId);
   const res = await egiGet<{ success: boolean; data: EgiArtistProfile }>(
-    `/public/artists/${ARTIST_ID}`
+    `/public/artists/${id}`
   );
   return res.data;
 }
@@ -76,9 +84,11 @@ export async function getArtistProfile(): Promise<EgiArtistProfile> {
 export async function getArtistArtworks(
   page = 1,
   perPage = 24,
-  collectionId?: number
+  collectionId?: number,
+  artistId?: number | string
 ): Promise<{ data: EgiArtwork[]; meta: PaginationMeta }> {
-  let path = `/public/artists/${ARTIST_ID}/artworks?page=${page}&per_page=${perPage}`;
+  const id = resolveArtistId(artistId);
+  let path = `/public/artists/${id}/artworks?page=${page}&per_page=${perPage}`;
   if (collectionId) {
     path += `&collection_id=${collectionId}`;
   }
@@ -128,11 +138,12 @@ export interface EgiTimelineResponse {
   chapters: EgiTimelineItem[];
 }
 
-export async function getArtistTimeline(): Promise<EgiTimelineResponse> {
+export async function getArtistTimeline(artistId?: number | string): Promise<EgiTimelineResponse> {
+  const id = resolveArtistId(artistId);
   const res = await egiGet<{
     success: boolean;
     data: EgiTimelineResponse | EgiTimelineItem[];
-  }>(`/public/artists/${ARTIST_ID}/timeline`);
+  }>(`/public/artists/${id}/timeline`);
 
   // Handle both old format (array) and new format (object with biography+chapters)
   if (Array.isArray(res.data)) {

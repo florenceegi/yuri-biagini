@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'cv' });
   return {
-    title: `${t('title')} — Yuri Biagini`,
-    description: `Yuri Biagini — ${t('title')}`,
+    title: `${t('title')} — ${process.env.NEXT_PUBLIC_SITE_NAME || 'Artist'}`,
+    description: `${process.env.NEXT_PUBLIC_SITE_NAME || 'Artist'} — ${t('title')}`,
   };
 }
 
@@ -34,7 +34,7 @@ export default async function CVPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'cv' });
 
   let timelineData: EgiTimelineResponse = { biography: null, chapters: [] };
-  let artistName = 'Yuri Biagini';
+  let artistName = process.env.NEXT_PUBLIC_SITE_NAME || 'Artist';
 
   try {
     const [timeline, profile] = await Promise.all([

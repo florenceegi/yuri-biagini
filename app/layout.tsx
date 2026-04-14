@@ -11,6 +11,7 @@ import { Space_Grotesk, Cormorant_Garamond, DM_Sans, DM_Serif_Display, Syne, Lib
 import { getVariant } from '@/lib/variant';
 import { getAnimation } from '@/lib/animation';
 import { getScene } from '@/lib/scene3d';
+import { CreatorProvider } from '@/lib/creator-context';
 import './globals.css';
 import './variants.css';
 
@@ -62,9 +63,13 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://yuri-biagini.florenceegi.com'
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com'
   ),
 };
+
+const SITE_MODE = (process.env.SITE_MODE || 'configurator') as 'configurator' | 'production';
+const FALLBACK_ARTIST_ID = process.env.NEXT_PUBLIC_ARTIST_ID || '';
+const FALLBACK_ARTIST_NAME = process.env.NEXT_PUBLIC_SITE_NAME || '';
 
 export default async function RootLayout({
   children,
@@ -87,7 +92,15 @@ export default async function RootLayout({
 
   return (
     <html className={fontClasses} data-variant={variant} data-animation={animation} data-scene={scene}>
-      <body>{children}</body>
+      <body>
+        <CreatorProvider
+          siteMode={SITE_MODE}
+          fallbackArtistId={FALLBACK_ARTIST_ID}
+          fallbackArtistName={FALLBACK_ARTIST_NAME}
+        >
+          {children}
+        </CreatorProvider>
+      </body>
     </html>
   );
 }

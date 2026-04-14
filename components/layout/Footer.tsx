@@ -26,7 +26,7 @@ export async function Footer({ locale }: Props) {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: copyright */}
           <p className="text-sm text-[var(--text-muted)]">
-            &copy; {year} Yuri Biagini
+            &copy; {year} {process.env.NEXT_PUBLIC_SITE_NAME || 'FlorenceEGI'}
           </p>
 
           {/* Center: legal links */}

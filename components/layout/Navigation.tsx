@@ -31,7 +31,7 @@ export async function Navigation({ locale }: Props) {
     <NavigationClient
       links={links}
       locale={locale}
-      artistName="Yuri Biagini"
+      artistName={process.env.NEXT_PUBLIC_SITE_NAME || 'Creator Staging'}
       openMenuLabel={tA11y('open_menu')}
       closeMenuLabel={tA11y('close_menu')}
       changeLangLabel={tA11y('change_language')}

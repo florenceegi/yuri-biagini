@@ -1,21 +1,22 @@
 /**
  * @package CREATOR-STAGING — JSON-LD Generators
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-10
- * @purpose schema.org structured data for SEO (traditional + AI)
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-14
+ * @purpose schema.org structured data for SEO — dynamic artist name from env
  */
 
 import type { EgiArtwork } from '@/lib/egi/client';
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://yuri-biagini.florenceegi.com';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com';
+const ARTIST_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'Artist';
 
 export function personJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Yuri Biagini',
+    name: ARTIST_NAME,
     url: SITE_URL,
     sameAs: [
       'https://art.florenceegi.com',
@@ -33,7 +34,7 @@ export function websiteJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Yuri Biagini',
+    name: ARTIST_NAME,
     url: SITE_URL,
     publisher: {
       '@type': 'Organization',
@@ -54,7 +55,7 @@ export function artworkJsonLd(artwork: EgiArtwork, locale: string) {
     url: `${SITE_URL}/${locale}/works/${artwork.id}`,
     creator: {
       '@type': 'Person',
-      name: artwork.creator?.display_name || 'Yuri Biagini',
+      name: artwork.creator?.display_name || ARTIST_NAME,
     },
     isPartOf: artwork.collection
       ? {
@@ -78,11 +79,11 @@ export function collectionPageJsonLd(locale: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Works — Yuri Biagini',
+    name: `Works — ${ARTIST_NAME}`,
     url: `${SITE_URL}/${locale}/works`,
     creator: {
       '@type': 'Person',
-      name: 'Yuri Biagini',
+      name: ARTIST_NAME,
     },
   };
 }
