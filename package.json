@@ -12,7 +12,7 @@
     "@eslint/eslintrc": "^3.3.5",
     "@hookform/resolvers": "^5.2.2",
     "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
+    "@react-three/fiber": "^9.6.0",
     "@react-three/postprocessing": "^3.0.4",
     "@sanity/client": "^7.20.0",
     "@sanity/image-url": "^2.1.1",
