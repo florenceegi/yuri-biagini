@@ -27,7 +27,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.72.1",
-    "resend": "^6.10.0",
+    "resend": "^6.11.0",
     "sharp": "^0.34.5",
     "splitting": "^1.1.0",
     "three": "^0.183.2",
