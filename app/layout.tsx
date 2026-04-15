@@ -6,7 +6,7 @@
  * @purpose Root layout — loads all variant fonts, applies variant theme via data attribute
  */
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Cormorant_Garamond, DM_Sans, DM_Serif_Display, Syne, Libre_Baskerville, Space_Mono } from 'next/font/google';
 import { getVariant } from '@/lib/variant';
 import { getAnimation } from '@/lib/animation';
@@ -60,6 +60,11 @@ const spaceMono = Space_Mono({
   weight: ['400', '700'],
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(
