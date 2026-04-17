@@ -1,9 +1,9 @@
 /**
  * @package CREATOR-STAGING — Global Styles
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-10
- * @purpose Dark theme globals, design tokens, accessibility utilities
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-17
+ * @purpose Multi-theme system: dark/light/ambient(7 slots)/auto + a11y modes
  */
 
 @import "tailwindcss";
@@ -22,6 +22,138 @@
   --focus-ring: rgba(200, 169, 126, 0.6);
   --radius: 8px;
   --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-theme="light"] {
+  --bg: #fafaf8;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f0ede8;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --accent: #8b6f47;
+  --accent-hover: #6d5638;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.16);
+  --focus-ring: rgba(139, 111, 71, 0.6);
+}
+
+html[data-theme="ambient-dawn"] {
+  --bg: #f4e4d4;
+  --bg-surface: #fbeee0;
+  --bg-elevated: #f0d9c2;
+  --text-primary: #2b1e17;
+  --text-secondary: #5a3f30;
+  --text-muted: #8a6a56;
+  --accent: #9c4f2f;
+  --accent-hover: #7e3e24;
+  --border: rgba(60, 30, 20, 0.1);
+  --border-hover: rgba(60, 30, 20, 0.2);
+  --focus-ring: rgba(156, 79, 47, 0.6);
+}
+
+html[data-theme="ambient-morning"] {
+  --bg: #fbfaf5;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f2efe6;
+  --text-primary: #161616;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
+  --accent: #8b6f47;
+  --accent-hover: #6d5638;
+  --border: rgba(0, 0, 0, 0.07);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --focus-ring: rgba(139, 111, 71, 0.6);
+}
+
+html[data-theme="ambient-day"] {
+  --bg: #ffffff;
+  --bg-surface: #f7f7f5;
+  --bg-elevated: #ededea;
+  --text-primary: #0d0d0d;
+  --text-secondary: #3d3d3d;
+  --text-muted: #6b6b6b;
+  --accent: #7a5a32;
+  --accent-hover: #5d4524;
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.2);
+  --focus-ring: rgba(122, 90, 50, 0.65);
+}
+
+html[data-theme="ambient-golden"] {
+  --bg: #f7e6c4;
+  --bg-surface: #fceed0;
+  --bg-elevated: #eed8a8;
+  --text-primary: #2a1f0d;
+  --text-secondary: #5a4420;
+  --text-muted: #8a6f38;
+  --accent: #a8621e;
+  --accent-hover: #874d16;
+  --border: rgba(50, 30, 10, 0.1);
+  --border-hover: rgba(50, 30, 10, 0.2);
+  --focus-ring: rgba(168, 98, 30, 0.6);
+}
+
+/* --bg è gradient: componenti devono usare background: var(--bg), non background-color. Per solid fallback usare --bg-surface. */
+html[data-theme="ambient-sunset"] {
+  /* gradient bg richiesto: arancio -> viola, non tinta piatta */
+  --bg: linear-gradient(160deg, #c65a30 0%, #a04870 55%, #4a2a5c 100%);
+  --bg-surface: rgba(30, 15, 40, 0.65);
+  --bg-elevated: rgba(60, 30, 70, 0.75);
+  --text-primary: #fbf3ec;
+  --text-secondary: #e4cdbd;
+  --text-muted: #b89a88;
+  --accent: #ffb060;
+  --accent-hover: #ffd6a8;
+  --border: rgba(255, 220, 190, 0.14);
+  --border-hover: rgba(255, 220, 190, 0.28);
+  --focus-ring: rgba(255, 176, 96, 0.7);
+}
+
+html[data-theme="ambient-evening"] {
+  --bg: #1a140f;
+  --bg-surface: #241c15;
+  --bg-elevated: #30241b;
+  --text-primary: #f0e6d8;
+  --text-secondary: #b8a590;
+  --text-muted: #806f5a;
+  --accent: #d4a26a;
+  --accent-hover: #e6bb86;
+  --border: rgba(240, 220, 190, 0.09);
+  --border-hover: rgba(240, 220, 190, 0.18);
+  --focus-ring: rgba(212, 162, 106, 0.6);
+}
+
+html[data-theme="ambient-night"] {
+  /* saturazione ridotta per calma visiva in ore notturne profonde */
+  --bg: #07080a;
+  --bg-surface: #0d0f12;
+  --bg-elevated: #14171c;
+  --text-primary: #d8dade;
+  --text-secondary: #8a8e95;
+  --text-muted: #54585f;
+  --accent: #8a8fa0;
+  --accent-hover: #a5aab8;
+  --border: rgba(200, 205, 215, 0.06);
+  --border-hover: rgba(200, 205, 215, 0.12);
+  --focus-ring: rgba(138, 143, 160, 0.55);
+}
+
+/* Auto mode: segue preferenza OS. Default resta dark (:root); override se OS = light */
+@media (prefers-color-scheme: light) {
+  html[data-theme="auto"] {
+    --bg: #fafaf8;
+    --bg-surface: #ffffff;
+    --bg-elevated: #f0ede8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --accent: #8b6f47;
+    --accent-hover: #6d5638;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.16);
+    --focus-ring: rgba(139, 111, 71, 0.6);
+  }
 }
 
 @theme inline {
@@ -108,4 +240,55 @@ body {
 ::selection {
   background: var(--accent);
   color: var(--bg);
+}
+
+/* A11y: massimo contrasto WCAG AAA — override di qualsiasi theme attivo */
+html.a11y-high-contrast,
+html.a11y-high-contrast[data-theme] {
+  --bg: #000000;
+  --bg-surface: #000000;
+  --bg-elevated: #0a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #f0f0f0;
+  --text-muted: #cccccc;
+  --accent: #ffd200;
+  --accent-hover: #ffe566;
+  --border: #ffffff;
+  --border-hover: #ffd200;
+  --focus-ring: #ffd200;
+}
+
+html.a11y-high-contrast *,
+html.a11y-high-contrast *::before,
+html.a11y-high-contrast *::after {
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* A11y: font dislessia. OpenDyslexic con fallback sicuri (installazione font non richiesta qui) */
+html.a11y-dyslexia body {
+  font-family: "OpenDyslexic", "Atkinson Hyperlegible", "Comic Sans MS", system-ui, sans-serif;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  word-spacing: 0.1em;
+}
+
+/* A11y: riduzione stimoli — no gradient, no shadow, zero animation */
+html.a11y-reduced-stim,
+html.a11y-reduced-stim body {
+  background-image: none !important;
+}
+
+html.a11y-reduced-stim *,
+html.a11y-reduced-stim *::before,
+html.a11y-reduced-stim *::after {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
 }
