@@ -189,7 +189,9 @@
     "press_title": "Imprensa",
     "press_description": "Artigos e publicacoes.",
     "contact_title": "Contacto",
-    "contact_description": "Entre em contacto para informacoes sobre obras e colaboracoes."
+    "contact_description": "Entre em contacto para informacoes sobre obras e colaboracoes.",
+    "story_behind_title": "A história por trás — Narrativa do artista",
+    "story_behind_description": "Manifesto e história por trás da obra do artista: origens, ofício, voz, horizonte."
   },
   "errors": {
     "not_found_title": "Pagina nao encontrada",
@@ -389,5 +391,23 @@
     "close": "Fechar",
     "always_on": "Sempre ativos",
     "privacy_policy": "Politica de privacidade"
+  },
+  "story_behind": {
+    "eyebrow": "Narrativa do artista",
+    "title": "A história por trás de cada linha",
+    "subtitle": "Antes da obra, há o gesto. Antes do gesto, a pergunta. Este é o caminho que a formou.",
+    "manifesto": "Crio porque vejo algo que ainda não existe, e não posso deixá-lo invisível. Cada obra é uma promessa cumprida a uma ideia.",
+    "origin_title": "Origens",
+    "origin_body": "Cresci acreditando que desenhar era uma forma de ouvir. Antes das palavras, tinha as mãos; antes das mãos, o olhar. A minha formação não é uma lista de escolas — é o tempo dedicado a observar como a luz transforma uma parede branca.",
+    "craft_title": "O ofício",
+    "craft_body": "O ofício é a disciplina de errar bem. Cada dia no estúdio é uma negociação entre a intuição e a matéria. Nenhuma obra sai limpa à primeira tentativa — e essa é a parte honesta do trabalho.",
+    "voice_title": "A voz",
+    "voice_body": "A minha voz não é uma assinatura estilística: é a soma das decisões tomadas quando ninguém olhava. Por isso certas obras entram numa sala e transformam-na.",
+    "horizon_title": "O horizonte",
+    "horizon_body": "Não trabalho para concluir. Trabalho para abrir a pergunta seguinte. Cada obra é um limiar, não uma resposta.",
+    "quote": "A arte não é o que vês, mas o que fazes ver aos outros.",
+    "quote_author": "Edgar Degas",
+    "cta_text": "Agora que conheces o caminho, é hora de percorrê-lo junto à obra.",
+    "cta_label": "Descobrir as obras"
   }
 }

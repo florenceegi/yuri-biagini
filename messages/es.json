@@ -189,7 +189,9 @@
     "press_title": "Prensa",
     "press_description": "Articulos y publicaciones.",
     "contact_title": "Contacto",
-    "contact_description": "Contacta para informacion sobre obras y colaboraciones."
+    "contact_description": "Contacta para informacion sobre obras y colaboraciones.",
+    "story_behind_title": "La historia detrás — Narrativa del artista",
+    "story_behind_description": "Manifiesto e historia detrás de la obra del artista: orígenes, oficio, voz, horizonte."
   },
   "errors": {
     "not_found_title": "Pagina No Encontrada",
@@ -389,5 +391,23 @@
     "close": "Cerrar",
     "always_on": "Siempre activas",
     "privacy_policy": "Politica de privacidad"
+  },
+  "story_behind": {
+    "eyebrow": "Narrativa del artista",
+    "title": "La historia detrás de cada línea",
+    "subtitle": "Antes de la obra está el gesto. Antes del gesto, la pregunta. Este es el camino que la formó.",
+    "manifesto": "Creo porque veo algo que aún no existe, y no puedo dejarlo invisible. Cada obra es una promesa cumplida a una idea.",
+    "origin_title": "Orígenes",
+    "origin_body": "Crecí creyendo que dibujar era una forma de escuchar. Antes de las palabras, tenía las manos; antes de las manos, la mirada. Mi formación no es una lista de escuelas — es el tiempo dedicado a observar cómo la luz cambia una pared blanca.",
+    "craft_title": "El oficio",
+    "craft_body": "El oficio es la disciplina de equivocarse bien. Cada día en el estudio es una negociación entre la intuición y la materia. Ninguna obra sale limpia al primer intento — y esa es la parte honesta del trabajo.",
+    "voice_title": "La voz",
+    "voice_body": "Mi voz no es una firma estilística: es la suma de decisiones tomadas cuando nadie miraba. Por eso ciertas obras entran en una sala y la transforman.",
+    "horizon_title": "El horizonte",
+    "horizon_body": "No trabajo para concluir. Trabajo para abrir la siguiente pregunta. Cada obra es un umbral, no una respuesta.",
+    "quote": "El arte no es lo que ves, sino lo que haces ver a los demás.",
+    "quote_author": "Edgar Degas",
+    "cta_text": "Ahora que conoces el camino, es momento de recorrerlo junto a la obra.",
+    "cta_label": "Descubrir las obras"
   }
 }

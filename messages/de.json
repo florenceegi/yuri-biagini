@@ -189,7 +189,9 @@
     "press_title": "Presse",
     "press_description": "Artikel und Publikationen.",
     "contact_title": "Kontakt",
-    "contact_description": "Kontaktieren Sie fuer Informationen zu Werken und Zusammenarbeit."
+    "contact_description": "Kontaktieren Sie fuer Informationen zu Werken und Zusammenarbeit.",
+    "story_behind_title": "Die Geschichte dahinter — Künstlernarrativ",
+    "story_behind_description": "Manifest und Geschichte hinter dem Werk des Künstlers: Ursprünge, Handwerk, Stimme, Horizont."
   },
   "errors": {
     "not_found_title": "Seite nicht gefunden",
@@ -389,5 +391,23 @@
     "close": "Schliessen",
     "always_on": "Immer aktiv",
     "privacy_policy": "Datenschutzerklaerung"
+  },
+  "story_behind": {
+    "eyebrow": "Künstlernarrativ",
+    "title": "Die Geschichte hinter jeder Linie",
+    "subtitle": "Vor dem Werk steht die Geste. Vor der Geste die Frage. Dies ist der Weg, der sie geformt hat.",
+    "manifesto": "Ich erschaffe, weil ich etwas sehe, das noch nicht existiert, und ich kann es nicht unsichtbar lassen. Jedes Werk ist ein eingelöstes Versprechen an eine Idee.",
+    "origin_title": "Ursprünge",
+    "origin_body": "Ich wuchs in der Überzeugung auf, dass Zeichnen eine Form des Zuhörens ist. Vor den Worten hatte ich die Hände; vor den Händen den Blick. Meine Ausbildung ist keine Liste von Schulen — es ist die Zeit, die ich damit verbracht habe, zu beobachten, wie Licht eine weiße Wand verändert.",
+    "craft_title": "Das Handwerk",
+    "craft_body": "Handwerk ist die Disziplin, gut zu scheitern. Jeder Tag im Atelier ist ein Aushandeln zwischen Intuition und Material. Kein Werk gelingt beim ersten Versuch sauber — das ist der ehrliche Teil der Arbeit.",
+    "voice_title": "Die Stimme",
+    "voice_body": "Meine Stimme ist keine stilistische Signatur: Sie ist die Summe der Entscheidungen, die ich getroffen habe, als niemand zusah. Deshalb verändern bestimmte Werke einen Raum, sobald sie ihn betreten.",
+    "horizon_title": "Der Horizont",
+    "horizon_body": "Ich arbeite nicht, um abzuschließen. Ich arbeite, um die nächste Frage zu öffnen. Jedes Werk ist eine Schwelle, keine Antwort.",
+    "quote": "Kunst ist nicht, was man sieht, sondern was andere dadurch sehen.",
+    "quote_author": "Edgar Degas",
+    "cta_text": "Jetzt, da Sie den Weg kennen, ist es Zeit, ihn zusammen mit dem Werk zu gehen.",
+    "cta_label": "Werke entdecken"
   }
 }

@@ -189,7 +189,9 @@
     "press_title": "媒体",
     "press_description": "文章和出版物。",
     "contact_title": "联系",
-    "contact_description": "了解作品和合作信息。"
+    "contact_description": "了解作品和合作信息。",
+    "story_behind_title": "背后的故事 — 艺术家叙事",
+    "story_behind_description": "艺术家作品背后的宣言与故事:起源、技艺、声音、远景。"
   },
   "errors": {
     "not_found_title": "页面未找到",
@@ -389,5 +391,23 @@
     "close": "关闭",
     "always_on": "始终启用",
     "privacy_policy": "隐私政策"
+  },
+  "story_behind": {
+    "eyebrow": "艺术家叙事",
+    "title": "每一条线背后的故事",
+    "subtitle": "作品之前是动作。动作之前是问题。这就是塑造作品的路径。",
+    "manifesto": "我创作,是因为我看到某种尚未存在之物,无法任其不可见。每件作品都是对一个念头许下并兑现的承诺。",
+    "origin_title": "起源",
+    "origin_body": "我从小就相信绘画是一种倾听。在语言之前,我有双手;在双手之前,我有目光。我的训练不是学校的清单——而是凝视白墙上光线变化的时光。",
+    "craft_title": "技艺",
+    "craft_body": "技艺是把错误做好的纪律。工作室里的每一天,都是直觉与材料之间的协商。没有作品能在第一次尝试中干净地完成——这正是工作中诚实的部分。",
+    "voice_title": "声音",
+    "voice_body": "我的声音不是一种风格签名:它是无人注视时我所作决定的总和。这正是为什么某些作品进入一个房间便能改变它。",
+    "horizon_title": "远景",
+    "horizon_body": "我不为结束而工作。我为开启下一个问题而工作。每件作品都是门槛,而不是答案。",
+    "quote": "艺术不是你所见,而是你让别人所见。",
+    "quote_author": "埃德加·德加",
+    "cta_text": "现在你已经知道路径,是时候与作品一同走过。",
+    "cta_label": "探索作品"
   }
 }

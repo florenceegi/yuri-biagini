@@ -189,7 +189,9 @@
     "press_title": "Rassegna Stampa",
     "press_description": "Articoli e pubblicazioni.",
     "contact_title": "Contatti",
-    "contact_description": "Contatta per informazioni su opere e collaborazioni."
+    "contact_description": "Contatta per informazioni su opere e collaborazioni.",
+    "story_behind_title": "La storia dietro — Storia dell'artista",
+    "story_behind_description": "Manifesto e storia dietro l'opera dell'artista: origini, mestiere, voce, orizzonte."
   },
   "errors": {
     "not_found_title": "Pagina non trovata",
@@ -389,5 +391,23 @@
     "close": "Chiudi",
     "always_on": "Sempre attivi",
     "privacy_policy": "Informativa privacy"
+  },
+  "story_behind": {
+    "eyebrow": "Storia dell'artista",
+    "title": "La storia dietro ogni linea",
+    "subtitle": "Prima dell'opera, c'è il gesto. Prima del gesto, c'è la domanda. Questo è il percorso che l'ha generata.",
+    "manifesto": "Creo perché vedo qualcosa che non esiste ancora, e non riesco a non renderlo visibile. Ogni opera è una promessa mantenuta a un'idea.",
+    "origin_title": "Le origini",
+    "origin_body": "Sono cresciuto convinto che disegnare fosse un modo di ascoltare. Prima delle parole, avevo le mani; prima delle mani, avevo lo sguardo. La mia formazione non è un elenco di scuole: è il tempo trascorso a osservare come la luce cambia un muro bianco.",
+    "craft_title": "Il mestiere",
+    "craft_body": "Il mestiere è la disciplina di sbagliare bene. Ogni giorno in studio è un negoziato tra l'intuizione e la materia. Nessuna opera esce pulita al primo colpo — e questa è la parte onesta del lavoro.",
+    "voice_title": "La voce",
+    "voice_body": "La mia voce non è una firma stilistica: è l'insieme delle decisioni che ho preso quando nessuno guardava. È la ragione per cui certe opere entrano in una stanza e la cambiano.",
+    "horizon_title": "L'orizzonte",
+    "horizon_body": "Non lavoro per concludere. Lavoro per aprire la domanda successiva. Ogni opera è una soglia, non una risposta.",
+    "quote": "L'arte non è ciò che vedi, ma ciò che fai vedere agli altri.",
+    "quote_author": "Edgar Degas",
+    "cta_text": "Ora che conosci il percorso, è il momento di attraversarlo insieme all'opera.",
+    "cta_label": "Scopri le opere"
   }
 }

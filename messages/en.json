@@ -189,7 +189,9 @@
     "press_title": "Press",
     "press_description": "Articles and publications.",
     "contact_title": "Contact",
-    "contact_description": "Get in touch for information about works and collaborations."
+    "contact_description": "Get in touch for information about works and collaborations.",
+    "story_behind_title": "Story Behind — Artist Narrative",
+    "story_behind_description": "Manifesto and story behind the artist's work: origins, craft, voice, horizon."
   },
   "errors": {
     "not_found_title": "Page Not Found",
@@ -389,5 +391,23 @@
     "close": "Close",
     "always_on": "Always on",
     "privacy_policy": "Privacy policy"
+  },
+  "story_behind": {
+    "eyebrow": "Artist narrative",
+    "title": "The story behind every line",
+    "subtitle": "Before the work, there's the gesture. Before the gesture, the question. This is the path that shaped it.",
+    "manifesto": "I create because I see something that doesn't yet exist, and I cannot leave it invisible. Every work is a promise kept to an idea.",
+    "origin_title": "Origins",
+    "origin_body": "I grew up believing that drawing was a way of listening. Before words, I had hands; before hands, I had vision. My training isn't a list of schools — it's the time I spent watching light change a white wall.",
+    "craft_title": "The craft",
+    "craft_body": "Craft is the discipline of failing well. Every day in the studio is a negotiation between intuition and matter. No work comes out clean on the first attempt — and this is the honest part of the work.",
+    "voice_title": "The voice",
+    "voice_body": "My voice is not a stylistic signature: it's the sum of decisions I made when no one was watching. It's the reason certain works enter a room and change it.",
+    "horizon_title": "The horizon",
+    "horizon_body": "I don't work to conclude. I work to open the next question. Every work is a threshold, not an answer.",
+    "quote": "Art is not what you see, but what you make others see.",
+    "quote_author": "Edgar Degas",
+    "cta_text": "Now that you know the path, it's time to walk it alongside the work.",
+    "cta_label": "Explore the works"
   }
 }

@@ -189,7 +189,9 @@
     "press_title": "Presse",
     "press_description": "Articles et publications.",
     "contact_title": "Contact",
-    "contact_description": "Contactez pour des informations sur les oeuvres et collaborations."
+    "contact_description": "Contactez pour des informations sur les oeuvres et collaborations.",
+    "story_behind_title": "L'histoire derrière — Récit de l'artiste",
+    "story_behind_description": "Manifeste et histoire derrière l'œuvre de l'artiste : origines, métier, voix, horizon."
   },
   "errors": {
     "not_found_title": "Page Non Trouvee",
@@ -389,5 +391,23 @@
     "close": "Fermer",
     "always_on": "Toujours actifs",
     "privacy_policy": "Politique de confidentialite"
+  },
+  "story_behind": {
+    "eyebrow": "Récit de l'artiste",
+    "title": "L'histoire derrière chaque ligne",
+    "subtitle": "Avant l'œuvre, il y a le geste. Avant le geste, la question. Voici le chemin qui l'a formée.",
+    "manifesto": "Je crée parce que je vois quelque chose qui n'existe pas encore, et je ne peux le laisser invisible. Chaque œuvre est une promesse tenue à une idée.",
+    "origin_title": "Les origines",
+    "origin_body": "J'ai grandi en pensant que dessiner était une façon d'écouter. Avant les mots, j'avais les mains ; avant les mains, le regard. Ma formation n'est pas une liste d'écoles — c'est le temps passé à voir la lumière changer un mur blanc.",
+    "craft_title": "Le métier",
+    "craft_body": "Le métier est la discipline d'échouer bien. Chaque jour à l'atelier est une négociation entre l'intuition et la matière. Aucune œuvre ne sort propre au premier essai — c'est la part honnête du travail.",
+    "voice_title": "La voix",
+    "voice_body": "Ma voix n'est pas une signature stylistique : c'est la somme des décisions prises quand personne ne regardait. C'est pour cela que certaines œuvres entrent dans une pièce et la transforment.",
+    "horizon_title": "L'horizon",
+    "horizon_body": "Je ne travaille pas pour conclure. Je travaille pour ouvrir la question suivante. Chaque œuvre est un seuil, non une réponse.",
+    "quote": "L'art n'est pas ce que l'on voit, mais ce que l'on fait voir.",
+    "quote_author": "Edgar Degas",
+    "cta_text": "Maintenant que vous connaissez le chemin, il est temps de le parcourir avec l'œuvre.",
+    "cta_label": "Découvrir les œuvres"
   }
 }
