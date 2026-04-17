@@ -1,9 +1,9 @@
 /**
  * @package CREATOR-STAGING — Locale Layout
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-10
- * @purpose Locale-aware layout with navigation, footer, skip-to-content, FEAnalytics
+ * @version 1.2.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-17
+ * @purpose Locale-aware layout with navigation, footer, skip-to-content, A11yPanel, CookieConsent (GDPR), FEAnalytics
  */
 
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -15,6 +15,8 @@ import { LenisProvider } from '@/components/layout/LenisProvider';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { PageTransition } from '@/components/layout/PageTransition';
 import { ConfigPanel } from '@/components/configurator/ConfigPanel';
+import { A11yPanel } from '@/components/layout/A11yPanel';
+import { CookieConsent } from '@/components/layout/CookieConsent';
 import { personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
 
@@ -66,6 +68,8 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'a11y' });
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
+  const tA11yPanel = await getTranslations({ locale, namespace: 'a11y_panel' });
+  const tCookie = await getTranslations({ locale, namespace: 'cookie' });
 
   return (
     <LenisProvider>
@@ -117,6 +121,50 @@ export default async function LocaleLayout({ children, params }: Props) {
         <PageTransition>{children}</PageTransition>
       </main>
       <Footer locale={locale} />
+      <A11yPanel
+        labels={{
+          title: tA11yPanel('title'),
+          trigger: tA11yPanel('trigger'),
+          close: tA11yPanel('close'),
+          font_size: tA11yPanel('font_size'),
+          font_normal: tA11yPanel('font_normal'),
+          font_large: tA11yPanel('font_large'),
+          font_xlarge: tA11yPanel('font_xlarge'),
+          contrast: tA11yPanel('contrast'),
+          contrast_normal: tA11yPanel('contrast_normal'),
+          contrast_high: tA11yPanel('contrast_high'),
+          motion: tA11yPanel('motion'),
+          motion_system: tA11yPanel('motion_system'),
+          motion_on: tA11yPanel('motion_on'),
+          motion_off: tA11yPanel('motion_off'),
+          dyslexia: tA11yPanel('dyslexia'),
+          dyslexia_off: tA11yPanel('dyslexia_off'),
+          dyslexia_on: tA11yPanel('dyslexia_on'),
+          reset: tA11yPanel('reset'),
+        }}
+      />
+      <CookieConsent
+        privacyHref={`/${locale}/privacy`}
+        labels={{
+          banner_title: tCookie('banner_title'),
+          banner_description: tCookie('banner_description'),
+          accept_all: tCookie('accept_all'),
+          reject_non_essential: tCookie('reject_non_essential'),
+          customize: tCookie('customize'),
+          modal_title: tCookie('modal_title'),
+          modal_description: tCookie('modal_description'),
+          category_essential_title: tCookie('category_essential_title'),
+          category_essential_description: tCookie('category_essential_description'),
+          category_analytics_title: tCookie('category_analytics_title'),
+          category_analytics_description: tCookie('category_analytics_description'),
+          category_marketing_title: tCookie('category_marketing_title'),
+          category_marketing_description: tCookie('category_marketing_description'),
+          save_preferences: tCookie('save_preferences'),
+          close: tCookie('close'),
+          always_on: tCookie('always_on'),
+          privacy_policy: tCookie('privacy_policy'),
+        }}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: `window.FEAnalyticsConfig=${JSON.stringify({

@@ -1,9 +1,9 @@
 /**
  * @package CREATOR-STAGING — Root Layout
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 3.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 3.3.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-17
- * @purpose Root layout — fonts, variant data attributes, global providers (Theme/Wishlist/QuickView/Creator), lso-ecosystem script, overlay root
+ * @purpose Root layout — fonts, variant data attributes, global providers (Theme/A11y/CookieConsent/Wishlist/QuickView/Creator), lso-ecosystem script, overlay root, PWA (manifest + service worker)
  */
 
 import type { Metadata, Viewport } from 'next';
@@ -14,11 +14,16 @@ import { getAnimation } from '@/lib/animation';
 import { getScene } from '@/lib/scene3d';
 import { CreatorProvider } from '@/lib/creator-context';
 import { ThemeProvider } from '@/lib/theme-context';
+import { A11yProvider } from '@/lib/a11y-context';
+import { CookieConsentProvider } from '@/lib/cookie-consent-context';
 import { WishlistProvider } from '@/lib/wishlist-context';
 import { QuickViewProvider } from '@/lib/quickview-context';
 import { OverlayManager } from '@/components/overlays/OverlayManager';
+import { ServiceWorkerRegister } from '@/components/layout/ServiceWorkerRegister';
 import './globals.css';
 import './variants.css';
+import './a11y.css';
+import './cookie.css';
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-sans',
@@ -69,12 +74,19 @@ const spaceMono = Space_Mono({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: '#000000',
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com'
   ),
+  manifest: '/manifest.webmanifest',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Creator Staging',
+  },
 };
 
 const SITE_MODE = (process.env.SITE_MODE || 'configurator') as 'configurator' | 'production';
@@ -103,19 +115,24 @@ export default async function RootLayout({
     <html className={fontClasses} data-variant={variant} data-animation={animation} data-scene={scene}>
       <body>
         <ThemeProvider>
-          <WishlistProvider>
-            <QuickViewProvider>
-              <CreatorProvider
-                siteMode={SITE_MODE}
-                fallbackArtistName={FALLBACK_ARTIST_NAME}
-              >
-                {children}
-                <div id="overlay-root" />
-                <OverlayManager />
-              </CreatorProvider>
-            </QuickViewProvider>
-          </WishlistProvider>
+          <A11yProvider>
+            <CookieConsentProvider>
+              <WishlistProvider>
+                <QuickViewProvider>
+                  <CreatorProvider
+                    siteMode={SITE_MODE}
+                    fallbackArtistName={FALLBACK_ARTIST_NAME}
+                  >
+                    {children}
+                    <div id="overlay-root" />
+                    <OverlayManager />
+                  </CreatorProvider>
+                </QuickViewProvider>
+              </WishlistProvider>
+            </CookieConsentProvider>
+          </A11yProvider>
         </ThemeProvider>
+        <ServiceWorkerRegister />
         <Script
           src="https://florenceegi.com/lso-ecosystem.js"
           strategy="lazyOnload"
