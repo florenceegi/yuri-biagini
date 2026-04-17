@@ -16,6 +16,7 @@ import { CreatorProvider } from '@/lib/creator-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import { WishlistProvider } from '@/lib/wishlist-context';
 import { QuickViewProvider } from '@/lib/quickview-context';
+import { OverlayManager } from '@/components/overlays/OverlayManager';
 import './globals.css';
 import './variants.css';
 
@@ -109,7 +110,8 @@ export default async function RootLayout({
                 fallbackArtistName={FALLBACK_ARTIST_NAME}
               >
                 {children}
-                <div id="overlay-root" aria-live="polite" />
+                <div id="overlay-root" />
+                <OverlayManager />
               </CreatorProvider>
             </QuickViewProvider>
           </WishlistProvider>

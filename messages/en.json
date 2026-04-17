@@ -225,5 +225,51 @@
     "commission_title": "Commission your site",
     "commission_description": "Choose template, animation and 3D scene. FlorenceEGI will build your professional site.",
     "commission_button": "Request your site"
+  },
+  "ai": {
+    "title": "The Guide",
+    "welcome": "Hi, I'm your guide in this space. I can tell you the story behind a work, explain the technique, or help you find the one that speaks to you.",
+    "placeholder": "Ask me anything...",
+    "send": "Send",
+    "close": "Close The Guide",
+    "mock_response": "Thanks for your question. This is a preview — the artist's RAG connection will be live soon.",
+    "prompt_1": "Tell me the story of this work",
+    "prompt_2": "What techniques does the artist use",
+    "prompt_3": "Show me similar works",
+    "disclaimer": "Preview assistant — responses are mock",
+    "you": "You",
+    "guide": "The Guide"
+  },
+  "quickview": {
+    "close": "Close",
+    "year": "Year",
+    "technique": "Technique",
+    "dimensions": "Dimensions",
+    "availability": "Availability",
+    "view_on_egi": "View on FlorenceEGI",
+    "add_to_wishlist": "Add to wishlist",
+    "remove_from_wishlist": "Remove from wishlist",
+    "no_description": "No description available"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search works, series, techniques...",
+    "close": "Close search",
+    "recent": "Recent searches",
+    "clear_recent": "Clear",
+    "results_for": "Results for",
+    "empty": "Start typing to search",
+    "no_results": "No results"
+  },
+  "wishlist": {
+    "title": "Your Wishlist",
+    "empty_title": "Nothing saved yet",
+    "empty_description": "Heart the works you love to save them here.",
+    "remove": "Remove",
+    "clear_all": "Clear all",
+    "view_on_egi": "View on FlorenceEGI",
+    "close": "Close wishlist",
+    "items_count_one": "1 work",
+    "items_count_other": "{count} works"
   }
 }

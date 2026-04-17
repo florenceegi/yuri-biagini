@@ -225,5 +225,51 @@
     "commission_title": "Commissiona il tuo sito",
     "commission_description": "Scegli template, animazione e scena 3D. FlorenceEGI costruira il tuo sito professionale.",
     "commission_button": "Richiedi il tuo sito"
+  },
+  "ai": {
+    "title": "La Guida",
+    "welcome": "Ciao, sono la tua guida in questo spazio. Posso raccontarti la storia dietro un'opera, spiegarti la tecnica, o aiutarti a trovare quella che ti parla.",
+    "placeholder": "Scrivi la tua domanda...",
+    "send": "Invia",
+    "close": "Chiudi la Guida",
+    "mock_response": "Grazie per la tua domanda. Questa e' una versione dimostrativa — la connessione al RAG dell'artista sara' attiva presto.",
+    "prompt_1": "Raccontami la storia di quest'opera",
+    "prompt_2": "Quali tecniche usa l'artista",
+    "prompt_3": "Mostrami opere simili",
+    "disclaimer": "Assistente in anteprima — le risposte sono dimostrative",
+    "you": "Tu",
+    "guide": "La Guida"
+  },
+  "quickview": {
+    "close": "Chiudi",
+    "year": "Anno",
+    "technique": "Tecnica",
+    "dimensions": "Dimensioni",
+    "availability": "Disponibilita'",
+    "view_on_egi": "Vedi su FlorenceEGI",
+    "add_to_wishlist": "Aggiungi alla wishlist",
+    "remove_from_wishlist": "Rimuovi dalla wishlist",
+    "no_description": "Nessuna descrizione disponibile"
+  },
+  "search": {
+    "title": "Cerca",
+    "placeholder": "Cerca opere, serie, tecniche...",
+    "close": "Chiudi ricerca",
+    "recent": "Ricerche recenti",
+    "clear_recent": "Svuota",
+    "results_for": "Risultati per",
+    "empty": "Inizia a digitare per cercare",
+    "no_results": "Nessun risultato"
+  },
+  "wishlist": {
+    "title": "La tua Wishlist",
+    "empty_title": "Ancora nulla di salvato",
+    "empty_description": "Tocca il cuore sulle opere che ami per salvarle qui.",
+    "remove": "Rimuovi",
+    "clear_all": "Svuota tutto",
+    "view_on_egi": "Vedi su FlorenceEGI",
+    "close": "Chiudi wishlist",
+    "items_count_one": "1 opera",
+    "items_count_other": "{count} opere"
   }
 }
