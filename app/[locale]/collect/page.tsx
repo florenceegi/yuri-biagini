@@ -1,14 +1,15 @@
 /**
  * @package CREATOR-STAGING — Collect Page
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-15
- * @purpose Collector's emotional funnel — thin server shell, artworks from authenticated creator
+ * @version 3.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-17
+ * @purpose Collector funnel (Opzione B) — hero + available gallery + trust + journey + why + testimonials + commission + CTA.
  */
 
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { CollectContent } from '@/components/collect/CollectContent';
+import type { Testimonial } from '@/components/collect/CollectTestimonials';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -30,6 +31,27 @@ export default async function CollectPage({ params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'collect' });
 
+  const testimonials: Testimonial[] = [
+    {
+      name: 'Marta Ricci',
+      location: 'Milano',
+      worksCount: 7,
+      quote: t('testimonial_1_quote'),
+    },
+    {
+      name: 'Giovanni Rossi',
+      location: 'Roma',
+      worksCount: 3,
+      quote: t('testimonial_2_quote'),
+    },
+    {
+      name: 'Anne Meyer',
+      location: 'Berlino',
+      worksCount: 12,
+      quote: t('testimonial_3_quote'),
+    },
+  ];
+
   return (
     <CollectContent
       locale={locale}
@@ -50,6 +72,51 @@ export default async function CollectPage({ params }: Props) {
       blockchainBadge={t('blockchain_badge')}
       ctaBrowse={t('cta_browse')}
       ctaPlatform={t('cta_platform')}
+      galleryLabels={{
+        title: t('available_now_title'),
+        subtitle: t('available_now_subtitle'),
+        filter_all: t('filter_all'),
+        filter_available: t('filter_available'),
+        filter_reserved: t('filter_reserved'),
+        filter_sold: t('filter_sold'),
+        filter_availability_group: t('filter_availability_group'),
+        filter_price: t('filter_price'),
+        filter_technique: t('filter_technique'),
+        filter_under_1k: t('filter_under_1k'),
+        filter_1k_5k: t('filter_1k_5k'),
+        filter_5k_10k: t('filter_5k_10k'),
+        filter_over_10k: t('filter_over_10k'),
+        filter_reset: t('filter_reset'),
+        no_results: t('no_results'),
+        quickview_cta: t('quickview_cta'),
+        price_on_request: t('price_on_request'),
+        wishlist_add: t('wishlist_add'),
+        wishlist_remove: t('wishlist_remove'),
+        badge_available: t('filter_available'),
+        badge_reserved: t('filter_reserved'),
+        badge_sold: t('filter_sold'),
+      }}
+      trustLabels={{
+        title: t('trust_title'),
+        blockchain_title: t('trust_blockchain_title'),
+        blockchain_desc: t('trust_blockchain_desc'),
+        certificate_title: t('trust_certificate_title'),
+        certificate_desc: t('trust_certificate_desc'),
+        direct_title: t('trust_direct_title'),
+        direct_desc: t('trust_direct_desc'),
+        payment_title: t('trust_payment_title'),
+        payment_desc: t('trust_payment_desc'),
+        return_title: t('trust_return_title'),
+        return_desc: t('trust_return_desc'),
+      }}
+      testimonialsTitle={t('testimonials_title')}
+      worksLabel={t('testimonials_works_label')}
+      testimonials={testimonials}
+      commissionLabels={{
+        title: t('commission_not_found'),
+        subtitle: t('commission_subtitle'),
+        cta: t('commission_cta'),
+      }}
     />
   );
 }
