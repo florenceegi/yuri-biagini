@@ -14,6 +14,7 @@ import {
   useId,
   useRef,
   useState,
+  type JSX,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react';
 import { usePathname } from 'next/navigation';
@@ -88,7 +89,11 @@ function applyA11yClasses(prefs: A11yPrefs): void {
   const root = document.documentElement;
   (Object.keys(A11Y_CLASS_MAP) as (keyof A11yPrefs)[]).forEach((k) => {
     const cls = A11Y_CLASS_MAP[k];
-    prefs[k] ? root.classList.add(cls) : root.classList.remove(cls);
+    if (prefs[k]) {
+      root.classList.add(cls);
+    } else {
+      root.classList.remove(cls);
+    }
   });
 }
 

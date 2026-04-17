@@ -1,27 +1,17 @@
 /**
  * @package CREATOR-STAGING — Footer
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 2.0.1 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-17
- * @purpose World-class 5-col footer + lso-ecosystem + newsletter + legal microrow
+ * @purpose World-class 5-col footer + lso-ecosystem + newsletter + legal microrow.
+ *          JSX augmentation per <lso-ecosystem> spostata in types/web-components.d.ts.
  */
 
 import Link from 'next/link';
-import React from 'react';
+import type { ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { NewsletterSignup } from './NewsletterSignup';
 import { FooterAccordion } from './FooterAccordion';
-
-// TypeScript declaration per Web Component LSO (React 19 — React.JSX namespace)
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      'lso-ecosystem': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        current?: string;
-      };
-    }
-  }
-}
 
 type Props = {
   locale: string;
@@ -153,7 +143,7 @@ export async function Footer({ locale }: Props) {
     ariaLabel: string,
     label: string,
     items: LinkItem[],
-    extra?: React.ReactNode,
+    extra?: ReactNode,
   ) => (
     <FooterAccordion
       label={label}

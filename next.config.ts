@@ -4,24 +4,16 @@ import createNextIntlPlugin from 'next-intl/plugin';
 /**
  * @package CREATOR-STAGING — Next.js Config
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-10
- * @purpose Next.js configuration with i18n, standalone output for PM2 deploy, image domains
+ * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-17
+ * @purpose Next.js configuration with i18n, standalone output for PM2 deploy, image domains.
+ *          ignoreBuildErrors/ignoreDuringBuilds rimossi (debito M-071 saldato via type JSX import React 19).
  */
 
 const withNextIntl = createNextIntlPlugin('./lib/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  typescript: {
-    // Emergency: pre-existing JSX.Element namespace errors bloccano build
-    // TODO: migrare a React.JSX.Element o React 19 types
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    // Allineato a typescript.ignoreBuildErrors — pre-existing errors
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {

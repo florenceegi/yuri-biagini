@@ -15,6 +15,7 @@ import {
   useEffect,
   useMemo,
   useState,
+  type JSX,
   type ReactNode,
 } from 'react';
 
@@ -114,8 +115,6 @@ export function WishlistProvider({ children }: { children: ReactNode }): JSX.Ele
   useEffect(() => {
     const stored = readStoredItems();
     setItems(stored);
-    // solo al mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Persist ogni cambio
