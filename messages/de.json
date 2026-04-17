@@ -191,7 +191,9 @@
     "contact_title": "Kontakt",
     "contact_description": "Kontaktieren Sie fuer Informationen zu Werken und Zusammenarbeit.",
     "story_behind_title": "Die Geschichte dahinter — Künstlernarrativ",
-    "story_behind_description": "Manifest und Geschichte hinter dem Werk des Künstlers: Ursprünge, Handwerk, Stimme, Horizont."
+    "story_behind_description": "Manifest und Geschichte hinter dem Werk des Künstlers: Ursprünge, Handwerk, Stimme, Horizont.",
+    "process_title": "Kreativer Prozess — Hinter den Kulissen des Ateliers",
+    "process_description": "Der kreative Prozess des Künstlers: Phasen, Werkzeuge, Atelierrituale."
   },
   "errors": {
     "not_found_title": "Seite nicht gefunden",
@@ -409,5 +411,39 @@
     "quote_author": "Edgar Degas",
     "cta_text": "Jetzt, da Sie den Weg kennen, ist es Zeit, ihn zusammen mit dem Werk zu gehen.",
     "cta_label": "Werke entdecken"
+  },
+  "process": {
+    "eyebrow": "Prozess",
+    "title": "Im Atelier",
+    "subtitle": "Ein Werk entsteht nicht in einem Moment. Es entsteht in fünfen, die sich wiederholen, bis sie Sprache werden.",
+    "stages_heading": "Die fünf Phasen",
+    "stage_spark_title": "Funke",
+    "stage_spark_body": "Alles beginnt mit einem inneren Bild, einem Satz, einem flüchtigen Licht. Ich notiere, bevor ich verstehe, um die Temperatur des Moments nicht zu verlieren.",
+    "stage_spark_duration": "Minuten — Tage",
+    "stage_sketch_title": "Skizze",
+    "stage_sketch_body": "Ich greife zum Papier. Ich suche nicht die richtige Form: ich suche die Richtung. Dutzende schneller Varianten, ohne mich an eine zu binden.",
+    "stage_sketch_duration": "Tage — Wochen",
+    "stage_build_title": "Aufbau",
+    "stage_build_body": "Hier beginnt die körperliche Arbeit. Materialien, Schichten, Versuche, Fehler. Das Werk beginnt zu existieren und zu fordern.",
+    "stage_build_duration": "Wochen — Monate",
+    "stage_refine_title": "Verfeinerung",
+    "stage_refine_body": "Ich nehme mehr weg, als ich hinzufüge. Jedes Detail wird hinterfragt, bis es allein bestehen kann.",
+    "stage_refine_duration": "Wochen",
+    "stage_release_title": "Freigabe",
+    "stage_release_body": "Das Werk hört auf, mein zu sein. Es überschreitet die Schwelle des Ateliers und beginnt sein Leben in der Welt.",
+    "stage_release_duration": "Ein Augenblick",
+    "tools_heading": "Werkzeuge und Materialien",
+    "tool_studio_label": "Das Atelier",
+    "tool_studio_detail": "Nordlicht, hohe Decke, großer zentraler Tisch. Stille gewählt, nicht gefunden.",
+    "tool_materials_label": "Die Materialien",
+    "tool_materials_detail": "Papiere unterschiedlicher Stärke, handgeriebene Pigmente, selbst vorbereitete Träger.",
+    "tool_software_label": "Die Software",
+    "tool_software_detail": "Nur wenn die Hand nicht ausreicht. Niemals als Ersatz der Hand.",
+    "tool_archive_label": "Das Archiv",
+    "tool_archive_detail": "Jeder Versuch wird aufbewahrt. Der heutige Ausschuss ist die Richtung von morgen.",
+    "ritual_heading": "Das tägliche Ritual",
+    "ritual_body": "Ich betrete das Atelier um sechs. Kurzer Spaziergang, Kaffee, Stille, dann die erste Linie, bevor der Verstand Zeit hat zu urteilen.",
+    "cta_text": "Möchten Sie den Prozess Tag für Tag verfolgen? Das Atelierjournal ist öffentlich.",
+    "cta_label": "Journal lesen"
   }
 }

@@ -191,7 +191,9 @@
     "contact_title": "Contacto",
     "contact_description": "Contacta para informacion sobre obras y colaboraciones.",
     "story_behind_title": "La historia detrás — Narrativa del artista",
-    "story_behind_description": "Manifiesto e historia detrás de la obra del artista: orígenes, oficio, voz, horizonte."
+    "story_behind_description": "Manifiesto e historia detrás de la obra del artista: orígenes, oficio, voz, horizonte.",
+    "process_title": "Proceso creativo — Entre bastidores del estudio",
+    "process_description": "El proceso creativo del artista: etapas, herramientas, rituales del estudio."
   },
   "errors": {
     "not_found_title": "Pagina No Encontrada",
@@ -409,5 +411,39 @@
     "quote_author": "Edgar Degas",
     "cta_text": "Ahora que conoces el camino, es momento de recorrerlo junto a la obra.",
     "cta_label": "Descubrir las obras"
+  },
+  "process": {
+    "eyebrow": "Proceso",
+    "title": "Dentro del estudio",
+    "subtitle": "Una obra no nace en un solo momento. Nace en cinco, repetidos hasta convertirse en lenguaje.",
+    "stages_heading": "Las cinco etapas",
+    "stage_spark_title": "Chispa",
+    "stage_spark_body": "Todo parte de una imagen mental, una frase, una luz vislumbrada. Anoto antes de entender, para no perder la temperatura del momento.",
+    "stage_spark_duration": "Minutos — días",
+    "stage_sketch_title": "Boceto",
+    "stage_sketch_body": "Tomo el papel. No busco la forma justa: busco la dirección. Decenas de variantes rápidas, sin apego a ninguna.",
+    "stage_sketch_duration": "Días — semanas",
+    "stage_build_title": "Construcción",
+    "stage_build_body": "Aquí comienza el trabajo físico. Materiales, capas, pruebas, errores. La obra empieza a existir y a exigir.",
+    "stage_build_duration": "Semanas — meses",
+    "stage_refine_title": "Refinado",
+    "stage_refine_body": "Quito más de lo que añado. Cada detalle es cuestionado hasta que se sostenga solo.",
+    "stage_refine_duration": "Semanas",
+    "stage_release_title": "Liberación",
+    "stage_release_body": "La obra deja de ser mía. Cruza el umbral del estudio y comienza su vida en el mundo.",
+    "stage_release_duration": "Un instante",
+    "tools_heading": "Herramientas y materiales",
+    "tool_studio_label": "El estudio",
+    "tool_studio_detail": "Luz natural del norte, techo alto, gran mesa central. Silencio elegido, no encontrado.",
+    "tool_materials_label": "Los materiales",
+    "tool_materials_detail": "Papeles de gramaje variable, pigmentos molidos a mano, soportes que preparo yo mismo.",
+    "tool_software_label": "El software",
+    "tool_software_detail": "Solo cuando la mano no basta. Nunca como sustituto de la mano.",
+    "tool_archive_label": "El archivo",
+    "tool_archive_detail": "Cada intento se conserva. El descarte de hoy es la dirección de mañana.",
+    "ritual_heading": "El ritual cotidiano",
+    "ritual_body": "Entro al estudio a las seis. Una caminata breve, café, silencio, luego la primera línea antes de que la mente tenga tiempo de juzgar.",
+    "cta_text": "¿Quieres seguir el proceso día a día? El diario de estudio es público.",
+    "cta_label": "Leer el diario"
   }
 }

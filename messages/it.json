@@ -191,7 +191,9 @@
     "contact_title": "Contatti",
     "contact_description": "Contatta per informazioni su opere e collaborazioni.",
     "story_behind_title": "La storia dietro — Storia dell'artista",
-    "story_behind_description": "Manifesto e storia dietro l'opera dell'artista: origini, mestiere, voce, orizzonte."
+    "story_behind_description": "Manifesto e storia dietro l'opera dell'artista: origini, mestiere, voce, orizzonte.",
+    "process_title": "Processo creativo — Dietro le quinte dello studio",
+    "process_description": "Il processo creativo dell'artista: fasi, strumenti, rituali dello studio."
   },
   "errors": {
     "not_found_title": "Pagina non trovata",
@@ -409,5 +411,39 @@
     "quote_author": "Edgar Degas",
     "cta_text": "Ora che conosci il percorso, è il momento di attraversarlo insieme all'opera.",
     "cta_label": "Scopri le opere"
+  },
+  "process": {
+    "eyebrow": "Processo",
+    "title": "Dentro lo studio",
+    "subtitle": "Un'opera non nasce in un momento. Nasce in cinque, che si ripetono finché non diventano linguaggio.",
+    "stages_heading": "Le cinque fasi",
+    "stage_spark_title": "Scintilla",
+    "stage_spark_body": "Tutto parte da un'immagine mentale, una frase, una luce vista di sfuggita. Annoto prima di capire, per non perdere la temperatura del momento.",
+    "stage_spark_duration": "Minuti — giorni",
+    "stage_sketch_title": "Schizzo",
+    "stage_sketch_body": "Metto mano alla carta. Non cerco la forma giusta: cerco la direzione. Decine di varianti veloci, senza affezionarmi a nessuna.",
+    "stage_sketch_duration": "Giorni — settimane",
+    "stage_build_title": "Costruzione",
+    "stage_build_body": "Qui comincia il lavoro fisico. Materiali, layer, prove, errori. L'opera inizia a esistere e a pretendere.",
+    "stage_build_duration": "Settimane — mesi",
+    "stage_refine_title": "Rifinitura",
+    "stage_refine_body": "Sottraggo più che aggiungo. Ogni dettaglio viene messo in discussione finché non resiste da solo.",
+    "stage_refine_duration": "Settimane",
+    "stage_release_title": "Rilascio",
+    "stage_release_body": "L'opera smette di essere mia. Passa la soglia dello studio e comincia la sua vita nel mondo.",
+    "stage_release_duration": "Un istante",
+    "tools_heading": "Strumenti e materiali",
+    "tool_studio_label": "Lo studio",
+    "tool_studio_detail": "Luce naturale da nord, soffitto alto, ampio tavolo centrale. Silenzio scelto, non trovato.",
+    "tool_materials_label": "I materiali",
+    "tool_materials_detail": "Carte a grammatura variabile, pigmenti macinati a mano, supporti preparati da me.",
+    "tool_software_label": "Il software",
+    "tool_software_detail": "Solo quando la mano non basta. Mai come sostituto della mano.",
+    "tool_archive_label": "L'archivio",
+    "tool_archive_detail": "Ogni tentativo viene conservato. Lo scarto di oggi è la direzione di domani.",
+    "ritual_heading": "Il rituale quotidiano",
+    "ritual_body": "Entro in studio alle sei. Camminata breve, caffè, silenzio, poi la prima linea prima che la mente abbia il tempo di giudicare.",
+    "cta_text": "Vuoi seguire il processo giorno per giorno? Il diario di studio è pubblico.",
+    "cta_label": "Leggi il journal"
   }
 }

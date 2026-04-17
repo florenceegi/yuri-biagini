@@ -191,7 +191,9 @@
     "contact_title": "联系",
     "contact_description": "了解作品和合作信息。",
     "story_behind_title": "背后的故事 — 艺术家叙事",
-    "story_behind_description": "艺术家作品背后的宣言与故事:起源、技艺、声音、远景。"
+    "story_behind_description": "艺术家作品背后的宣言与故事:起源、技艺、声音、远景。",
+    "process_title": "创作过程 — 工作室幕后",
+    "process_description": "艺术家的创作过程:阶段、工具、工作室的仪式。"
   },
   "errors": {
     "not_found_title": "页面未找到",
@@ -409,5 +411,39 @@
     "quote_author": "埃德加·德加",
     "cta_text": "现在你已经知道路径,是时候与作品一同走过。",
     "cta_label": "探索作品"
+  },
+  "process": {
+    "eyebrow": "过程",
+    "title": "走进工作室",
+    "subtitle": "一件作品不在某个瞬间诞生。它诞生于五个阶段,反复直至成为语言。",
+    "stages_heading": "五个阶段",
+    "stage_spark_title": "火花",
+    "stage_spark_body": "一切从心中的图像、一个句子、一瞥的光开始。我在理解之前就记下,不让那一刻的温度流失。",
+    "stage_spark_duration": "分钟 — 日",
+    "stage_sketch_title": "速写",
+    "stage_sketch_body": "我拿起纸张。我寻找的不是正确的形式,而是方向。数十个快速变体,不对任何一个产生依恋。",
+    "stage_sketch_duration": "日 — 周",
+    "stage_build_title": "构建",
+    "stage_build_body": "这里开始了身体的劳作。材料、图层、试验、错误。作品开始存在,并开始索求。",
+    "stage_build_duration": "周 — 月",
+    "stage_refine_title": "精修",
+    "stage_refine_body": "我减去的多于添加。每一处细节都被质疑,直到它能独立成立。",
+    "stage_refine_duration": "数周",
+    "stage_release_title": "释出",
+    "stage_release_body": "作品不再属于我。它跨过工作室的门槛,在世界中开始自己的生命。",
+    "stage_release_duration": "一瞬",
+    "tools_heading": "工具与材料",
+    "tool_studio_label": "工作室",
+    "tool_studio_detail": "北向自然光,高高的屋顶,宽大的中央桌。寂静是选择的,不是偶得的。",
+    "tool_materials_label": "材料",
+    "tool_materials_detail": "各种克重的纸张、手工研磨的颜料、自己制作的承载物。",
+    "tool_software_label": "软件",
+    "tool_software_detail": "仅当双手不足时。从不作为双手的替代。",
+    "tool_archive_label": "档案",
+    "tool_archive_detail": "每一次尝试都被保留。今日的废稿,是明日的方向。",
+    "ritual_heading": "日常仪式",
+    "ritual_body": "我六点进入工作室。短暂散步、咖啡、寂静,然后在心智来不及评判之前落下第一笔。",
+    "cta_text": "想要日复一日跟随这个过程?工作室日志公开发布。",
+    "cta_label": "阅读日志"
   }
 }

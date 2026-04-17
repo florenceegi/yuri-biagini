@@ -191,7 +191,9 @@
     "contact_title": "Contact",
     "contact_description": "Contactez pour des informations sur les oeuvres et collaborations.",
     "story_behind_title": "L'histoire derrière — Récit de l'artiste",
-    "story_behind_description": "Manifeste et histoire derrière l'œuvre de l'artiste : origines, métier, voix, horizon."
+    "story_behind_description": "Manifeste et histoire derrière l'œuvre de l'artiste : origines, métier, voix, horizon.",
+    "process_title": "Processus créatif — Les coulisses de l'atelier",
+    "process_description": "Le processus créatif de l'artiste : étapes, outils, rituels d'atelier."
   },
   "errors": {
     "not_found_title": "Page Non Trouvee",
@@ -409,5 +411,39 @@
     "quote_author": "Edgar Degas",
     "cta_text": "Maintenant que vous connaissez le chemin, il est temps de le parcourir avec l'œuvre.",
     "cta_label": "Découvrir les œuvres"
+  },
+  "process": {
+    "eyebrow": "Processus",
+    "title": "Dans l'atelier",
+    "subtitle": "Une œuvre ne naît pas en un instant. Elle naît en cinq, répétés jusqu'à devenir langage.",
+    "stages_heading": "Les cinq étapes",
+    "stage_spark_title": "Étincelle",
+    "stage_spark_body": "Tout commence par une image mentale, une phrase, une lumière entrevue. Je note avant de comprendre, pour ne pas perdre la température du moment.",
+    "stage_spark_duration": "Minutes — jours",
+    "stage_sketch_title": "Esquisse",
+    "stage_sketch_body": "Je prends le papier. Je ne cherche pas la forme juste : je cherche la direction. Des dizaines de variantes rapides, sans m'attacher à aucune.",
+    "stage_sketch_duration": "Jours — semaines",
+    "stage_build_title": "Construction",
+    "stage_build_body": "Ici commence le travail physique. Matériaux, couches, essais, erreurs. L'œuvre commence à exister et à exiger.",
+    "stage_build_duration": "Semaines — mois",
+    "stage_refine_title": "Finition",
+    "stage_refine_body": "Je soustrais plus que j'ajoute. Chaque détail est questionné jusqu'à ce qu'il tienne seul.",
+    "stage_refine_duration": "Semaines",
+    "stage_release_title": "Sortie",
+    "stage_release_body": "L'œuvre cesse d'être mienne. Elle franchit le seuil de l'atelier et commence sa vie dans le monde.",
+    "stage_release_duration": "Un instant",
+    "tools_heading": "Outils et matériaux",
+    "tool_studio_label": "L'atelier",
+    "tool_studio_detail": "Lumière naturelle du nord, haut plafond, grande table centrale. Silence choisi, non trouvé.",
+    "tool_materials_label": "Les matériaux",
+    "tool_materials_detail": "Papiers de grammages variés, pigments broyés à la main, supports préparés par moi-même.",
+    "tool_software_label": "Le logiciel",
+    "tool_software_detail": "Seulement quand la main ne suffit pas. Jamais comme substitut de la main.",
+    "tool_archive_label": "L'archive",
+    "tool_archive_detail": "Chaque tentative est conservée. Le rebut d'aujourd'hui est la direction de demain.",
+    "ritual_heading": "Le rituel quotidien",
+    "ritual_body": "J'entre à l'atelier à six heures. Courte marche, café, silence, puis la première ligne avant que l'esprit ait le temps de juger.",
+    "cta_text": "Envie de suivre le processus jour après jour ? Le journal d'atelier est public.",
+    "cta_label": "Lire le journal"
   }
 }

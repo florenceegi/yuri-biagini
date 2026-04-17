@@ -191,7 +191,9 @@
     "contact_title": "Contacto",
     "contact_description": "Entre em contacto para informacoes sobre obras e colaboracoes.",
     "story_behind_title": "A história por trás — Narrativa do artista",
-    "story_behind_description": "Manifesto e história por trás da obra do artista: origens, ofício, voz, horizonte."
+    "story_behind_description": "Manifesto e história por trás da obra do artista: origens, ofício, voz, horizonte.",
+    "process_title": "Processo criativo — Os bastidores do estúdio",
+    "process_description": "O processo criativo do artista: etapas, ferramentas, rituais do estúdio."
   },
   "errors": {
     "not_found_title": "Pagina nao encontrada",
@@ -409,5 +411,39 @@
     "quote_author": "Edgar Degas",
     "cta_text": "Agora que conheces o caminho, é hora de percorrê-lo junto à obra.",
     "cta_label": "Descobrir as obras"
+  },
+  "process": {
+    "eyebrow": "Processo",
+    "title": "Dentro do estúdio",
+    "subtitle": "Uma obra não nasce num único instante. Nasce em cinco, repetidos até se tornarem linguagem.",
+    "stages_heading": "As cinco etapas",
+    "stage_spark_title": "Centelha",
+    "stage_spark_body": "Tudo parte de uma imagem mental, uma frase, uma luz entrevista. Anoto antes de compreender, para não perder a temperatura do momento.",
+    "stage_spark_duration": "Minutos — dias",
+    "stage_sketch_title": "Esboço",
+    "stage_sketch_body": "Pego no papel. Não procuro a forma certa: procuro a direção. Dezenas de variantes rápidas, sem me prender a nenhuma.",
+    "stage_sketch_duration": "Dias — semanas",
+    "stage_build_title": "Construção",
+    "stage_build_body": "Aqui começa o trabalho físico. Materiais, camadas, provas, erros. A obra começa a existir — e a exigir.",
+    "stage_build_duration": "Semanas — meses",
+    "stage_refine_title": "Refinamento",
+    "stage_refine_body": "Subtraio mais do que acrescento. Cada detalhe é questionado até se sustentar sozinho.",
+    "stage_refine_duration": "Semanas",
+    "stage_release_title": "Libertação",
+    "stage_release_body": "A obra deixa de ser minha. Atravessa o limiar do estúdio e começa a sua vida no mundo.",
+    "stage_release_duration": "Um instante",
+    "tools_heading": "Ferramentas e materiais",
+    "tool_studio_label": "O estúdio",
+    "tool_studio_detail": "Luz natural de norte, teto alto, grande mesa central. Silêncio escolhido, não encontrado.",
+    "tool_materials_label": "Os materiais",
+    "tool_materials_detail": "Papéis de gramagens variadas, pigmentos moídos à mão, suportes que preparo eu mesmo.",
+    "tool_software_label": "O software",
+    "tool_software_detail": "Só quando a mão não basta. Nunca como substituto da mão.",
+    "tool_archive_label": "O arquivo",
+    "tool_archive_detail": "Cada tentativa é guardada. O descarte de hoje é a direção de amanhã.",
+    "ritual_heading": "O ritual diário",
+    "ritual_body": "Entro no estúdio às seis. Curta caminhada, café, silêncio, depois a primeira linha antes que a mente tenha tempo de julgar.",
+    "cta_text": "Quer acompanhar o processo dia a dia? O diário do estúdio é público.",
+    "cta_label": "Ler o diário"
   }
 }
