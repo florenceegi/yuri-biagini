@@ -1,9 +1,9 @@
 /**
  * @package CREATOR-STAGING — JSON-LD Generators
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-14
- * @purpose schema.org structured data for SEO — dynamic artist name from env
+ * @version 2.1.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-17
+ * @purpose schema.org structured data for SEO — dynamic artist name from env + 7 locales inLanguage
  */
 
 import type { EgiArtwork } from '@/lib/egi/client';
@@ -41,7 +41,7 @@ export function websiteJsonLd() {
       name: 'FlorenceEGI',
       url: 'https://florenceegi.com',
     },
-    inLanguage: ['it', 'en', 'fr', 'de', 'es', 'zh'],
+    inLanguage: ['it', 'en', 'fr', 'de', 'es', 'pt', 'zh'],
   };
 }
 
