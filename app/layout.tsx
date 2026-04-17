@@ -1,17 +1,21 @@
 /**
  * @package CREATOR-STAGING — Root Layout
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-13
- * @purpose Root layout — loads all variant fonts, applies variant theme via data attribute
+ * @version 3.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-17
+ * @purpose Root layout — fonts, variant data attributes, global providers (Theme/Wishlist/QuickView/Creator), lso-ecosystem script, overlay root
  */
 
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Space_Grotesk, Cormorant_Garamond, DM_Sans, DM_Serif_Display, Syne, Libre_Baskerville, Space_Mono } from 'next/font/google';
 import { getVariant } from '@/lib/variant';
 import { getAnimation } from '@/lib/animation';
 import { getScene } from '@/lib/scene3d';
 import { CreatorProvider } from '@/lib/creator-context';
+import { ThemeProvider } from '@/lib/theme-context';
+import { WishlistProvider } from '@/lib/wishlist-context';
+import { QuickViewProvider } from '@/lib/quickview-context';
 import './globals.css';
 import './variants.css';
 
@@ -97,12 +101,23 @@ export default async function RootLayout({
   return (
     <html className={fontClasses} data-variant={variant} data-animation={animation} data-scene={scene}>
       <body>
-        <CreatorProvider
-          siteMode={SITE_MODE}
-          fallbackArtistName={FALLBACK_ARTIST_NAME}
-        >
-          {children}
-        </CreatorProvider>
+        <ThemeProvider>
+          <WishlistProvider>
+            <QuickViewProvider>
+              <CreatorProvider
+                siteMode={SITE_MODE}
+                fallbackArtistName={FALLBACK_ARTIST_NAME}
+              >
+                {children}
+                <div id="overlay-root" aria-live="polite" />
+              </CreatorProvider>
+            </QuickViewProvider>
+          </WishlistProvider>
+        </ThemeProvider>
+        <Script
+          src="https://florenceegi.com/lso-ecosystem.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
