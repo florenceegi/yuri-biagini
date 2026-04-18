@@ -222,6 +222,8 @@ type MoreMenuProps = {
   links: NavLink[];
   pathname: string;
   className?: string;
+  /** Apertura verso l'alto (per navbar fixed-bottom, es. variant 06 Brutalist). */
+  openUpward?: boolean;
 };
 
 export function MoreMenu({
@@ -229,6 +231,7 @@ export function MoreMenu({
   links,
   pathname,
   className = '',
+  openUpward = false,
 }: MoreMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -297,7 +300,11 @@ export function MoreMenu({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-3.5 h-3.5 transition-transform ${
+            openUpward
+              ? isOpen ? '' : 'rotate-180'
+              : isOpen ? 'rotate-180' : ''
+          }`}
         >
           <polyline points="5 8 10 13 15 8" />
         </svg>
@@ -307,7 +314,9 @@ export function MoreMenu({
           ref={panelRef}
           id={menuId}
           role="menu"
-          className="absolute top-full right-0 mt-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-lg py-1 min-w-[180px] shadow-xl z-[60]"
+          className={`absolute right-0 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-lg py-1 min-w-[180px] shadow-xl z-[60] ${
+            openUpward ? 'bottom-full mb-2' : 'top-full mt-2'
+          }`}
         >
           {links.map((link) => (
             <li key={link.href} role="none">

@@ -133,6 +133,7 @@ export function NavigationClient({
                     label={moreLabel}
                     links={secondaryLinks}
                     pathname={pathname}
+                    openUpward
                   />
                 </li>
               )}
