@@ -9,7 +9,13 @@
     "collections": "Colecciones",
     "collect": "Coleccionar",
     "commission": "Encargos",
-    "cv": "CV"
+    "cv": "CV",
+    "discover": "Descubrir",
+    "more": "Más",
+    "story_behind": "Historia",
+    "process": "Proceso",
+    "journal": "Diario",
+    "live": "Live"
   },
   "works": {
     "title": "Obras",
@@ -489,7 +495,9 @@
     "col_collect_label": "Coleccionar",
     "col_connect_label": "Conectar",
     "col_explore_label": "Explorar",
-    "col_legal_label": "Legal"
+    "col_legal_label": "Legal",
+    "collect_link": "Coleccionar",
+    "live": "Live"
   },
   "hero": {
     "tagline": "Artista"

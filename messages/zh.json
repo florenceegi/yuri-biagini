@@ -9,7 +9,13 @@
     "collections": "系列作品",
     "collect": "收藏",
     "commission": "定制创作",
-    "cv": "简历"
+    "cv": "简历",
+    "discover": "探索",
+    "more": "更多",
+    "story_behind": "故事",
+    "process": "过程",
+    "journal": "日记",
+    "live": "现场"
   },
   "works": {
     "title": "作品",
@@ -489,7 +495,9 @@
     "col_collect_label": "收藏",
     "col_connect_label": "联系",
     "col_explore_label": "探索",
-    "col_legal_label": "法律"
+    "col_legal_label": "法律",
+    "collect_link": "收藏",
+    "live": "现场"
   },
   "hero": {
     "tagline": "艺术家"

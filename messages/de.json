@@ -9,7 +9,13 @@
     "collections": "Sammlungen",
     "collect": "Sammeln",
     "commission": "Auftragswerke",
-    "cv": "Lebenslauf"
+    "cv": "Lebenslauf",
+    "discover": "Entdecken",
+    "more": "Mehr",
+    "story_behind": "Geschichte",
+    "process": "Prozess",
+    "journal": "Tagebuch",
+    "live": "Live"
   },
   "works": {
     "title": "Werke",
@@ -489,7 +495,9 @@
     "col_collect_label": "Sammeln",
     "col_connect_label": "Verbinden",
     "col_explore_label": "Entdecken",
-    "col_legal_label": "Rechtliches"
+    "col_legal_label": "Rechtliches",
+    "collect_link": "Sammeln",
+    "live": "Live"
   },
   "hero": {
     "tagline": "Künstler"

@@ -1,9 +1,9 @@
 /**
  * @package CREATOR-STAGING — Navigation
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-17
- * @purpose Server component — split primary/secondary links, utility labels, i18n
+ * @version 2.1.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-18
+ * @purpose Server component — primary funnel + secondary "Discover" dropdown (7 narrative pages)
  */
 
 import { getTranslations } from 'next-intl/server';
@@ -19,17 +19,24 @@ export async function Navigation({ locale }: Props) {
   const tA11y = await getTranslations({ locale, namespace: 'a11y' });
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
 
+  // Primary = funnel emotivo (visitor-centric): opere → colleziona → commissiona
   const primaryLinks = [
     { href: `/${locale}/works`, label: t('works') },
-    { href: `/${locale}/collections`, label: t('collections') },
-    { href: `/${locale}/collect`, label: t('collect') },
     { href: `/${locale}/about`, label: t('about') },
-    { href: `/${locale}/exhibitions`, label: t('exhibitions') },
-  ];
-
-  const secondaryLinks = [
+    { href: `/${locale}/collect`, label: t('collect') },
     { href: `/${locale}/commission`, label: t('commission') },
     { href: `/${locale}/contact`, label: t('contact') },
+  ];
+
+  // Secondary = narrative deep dive (dropdown "Discover"): 7 pagine narrative
+  const secondaryLinks = [
+    { href: `/${locale}/story-behind`, label: t('story_behind') },
+    { href: `/${locale}/process`, label: t('process') },
+    { href: `/${locale}/journal`, label: t('journal') },
+    { href: `/${locale}/live`, label: t('live') },
+    { href: `/${locale}/exhibitions`, label: t('exhibitions') },
+    { href: `/${locale}/press`, label: t('press') },
+    { href: `/${locale}/cv`, label: t('cv') },
   ];
 
   // PreferencesMenu labels (namespace: configurator — F2.2.1 will batch-add missing keys).
@@ -64,7 +71,7 @@ export async function Navigation({ locale }: Props) {
       openMenuLabel={tA11y('open_menu')}
       closeMenuLabel={tA11y('close_menu')}
       changeLangLabel={tA11y('change_language')}
-      moreLabel={t('more')}
+      moreLabel={t('discover')}
       utilityLabels={utilityLabels}
     />
   );

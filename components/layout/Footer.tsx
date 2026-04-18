@@ -1,8 +1,8 @@
 /**
  * @package CREATOR-STAGING — Footer
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.1 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-17
+ * @version 2.1.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-18
  * @purpose World-class 5-col footer + lso-ecosystem + newsletter + legal microrow.
  *          JSX augmentation per <lso-ecosystem> spostata in types/web-components.d.ts.
  */
@@ -79,16 +79,18 @@ export async function Footer({ locale }: Props) {
   ];
 
   const collectLinks: LinkItem[] = [
+    { label: t('collect_link'), href: `/${locale}/collect` },
+    { label: t('commission'), href: `/${locale}/commission` },
     { label: t('available_now'), href: `/${locale}/available-now`, todo: true },
-    { label: t('commission'), href: `/${locale}/commission`, todo: true },
     { label: t('certificates'), href: `/${locale}/certificates`, todo: true },
     { label: t('shipping'), href: `/${locale}/shipping`, todo: true },
   ];
 
   const aboutLinks: LinkItem[] = [
-    { label: t('story'), href: `/${locale}/story`, todo: true },
-    { label: t('process'), href: `/${locale}/process`, todo: true },
-    { label: t('journal'), href: `/${locale}/journal`, todo: true },
+    { label: t('story'), href: `/${locale}/story-behind` },
+    { label: t('process'), href: `/${locale}/process` },
+    { label: t('journal'), href: `/${locale}/journal` },
+    { label: t('live'), href: `/${locale}/live` },
     { label: t('studio'), href: `/${locale}/studio`, todo: true },
   ];
 
