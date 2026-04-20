@@ -1,13 +1,14 @@
 /**
  * @package CREATOR-STAGING — Site Commission API
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 1.2.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-20
- * @purpose Artist commissions personal site to FlorenceEGI WebAgency via Resend email — includes modular section + feature addons with server-recomputed quote (MiCA-safe, EUR).
+ * @purpose Artist commissions personal site to FlorenceEGI WebAgency via AWS SES — includes modular section + feature addons with server-recomputed quote (MiCA-safe, EUR).
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { rateLimit } from '@/lib/rate-limit';
 import {
   SECTIONS,
@@ -19,6 +20,10 @@ import {
   type FeatureId,
   type TierId,
 } from '@/lib/site-catalog';
+
+const sesClient = new SESClient({
+  region: process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'eu-north-1',
+});
 
 const tierSchema = z.enum(['creator', 'studio', 'maestro']);
 
@@ -61,13 +66,9 @@ export async function POST(request: NextRequest) {
     const tier = getTier(data.tier as TierId);
     const quote = computeQuote(data.tier as TierId, data.sections as SectionId[], data.features as FeatureId[]);
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.WEBAGENCY_EMAIL_TO || process.env.COMMISSION_EMAIL_TO || 'webagency@florenceegi.com';
-
-    if (!apiKey) {
-      console.warn('RESEND_API_KEY not configured — site-commission email not sent');
-      return NextResponse.json({ success: true, quote });
-    }
+    const to = process.env.WEBAGENCY_EMAIL_TO || process.env.COMMISSION_EMAIL_TO || 'fabio@florenceegi.com';
+    const from = process.env.MAIL_FROM_ADDRESS || 'noreply@florenceegi.com';
+    const fromName = process.env.MAIL_FROM_NAME || 'FlorenceEGI WebAgency';
 
     const lines = [
       `Name: ${data.name}`,
@@ -101,24 +102,22 @@ export async function POST(request: NextRequest) {
     lines.push('', `TOTAL SETUP: ${fmt(quote.setup)}`, `TOTAL MONTHLY: ${fmt(quote.monthly)}`);
     if (data.message) lines.push('', `Message:\n${data.message}`);
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'FlorenceEGI WebAgency <noreply@florenceegi.com>',
-        to: [to],
-        reply_to: data.email,
-        subject: `[Site ${data.tier.toUpperCase()}] ${data.name} — ${fmt(quote.setup)} + ${fmt(quote.monthly)}/mo`,
-        text: lines.join('\n'),
-      }),
-    });
+    const subject = `[Site ${data.tier.toUpperCase()}] ${data.name} — ${fmt(quote.setup)} + ${fmt(quote.monthly)}/mo`;
 
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Resend API error:', err);
+    try {
+      await sesClient.send(
+        new SendEmailCommand({
+          Source: `${fromName} <${from}>`,
+          Destination: { ToAddresses: [to] },
+          ReplyToAddresses: [data.email],
+          Message: {
+            Subject: { Data: subject, Charset: 'UTF-8' },
+            Body: { Text: { Data: lines.join('\n'), Charset: 'UTF-8' } },
+          },
+        }),
+      );
+    } catch (sesErr) {
+      console.error('SES SendEmail error:', sesErr);
       return NextResponse.json({ success: false }, { status: 500 });
     }
 
