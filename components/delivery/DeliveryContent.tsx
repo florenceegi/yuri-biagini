@@ -8,6 +8,8 @@
 
 'use client';
 
+import { SECTIONS, FEATURES, type SectionId, type FeatureId } from '@/lib/site-catalog';
+
 type Metric = { label: string; value: string; note: string };
 type Deliverable = { title: string; body: string };
 type StackRow = { layer: string; tech: string; rationale: string };
@@ -69,6 +71,16 @@ type Props = {
   tiersDisclaimer: string;
   reductionHeading: string;
   reductionBody: string;
+
+  catalogHeading: string;
+  catalogIntro: string;
+  catalogSectionsHeading: string;
+  catalogFeaturesHeading: string;
+  catalogColName: string;
+  catalogColSetup: string;
+  catalogColMonthly: string;
+  sectionLabels: Record<SectionId, { label: string; description: string }>;
+  featureLabels: Record<FeatureId, { label: string; description: string }>;
 
   s6Heading: string;
   s6Bullets: string[];
@@ -386,6 +398,79 @@ export function DeliveryContent(props: Props) {
             {props.reductionHeading}
           </h3>
           <p className="text-[var(--text-secondary)] text-lg leading-relaxed">{props.reductionBody}</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="catalog-heading" className="mb-24 md:mb-32">
+        <div className="mb-12 md:mb-16 max-w-3xl">
+          <p className="text-[var(--accent)] text-xs uppercase tracking-[0.3em] mb-4">§5.1</p>
+          <h2
+            id="catalog-heading"
+            className="dl-section-heading font-[family-name:var(--font-serif)] text-3xl md:text-5xl font-light mb-6 leading-tight"
+          >
+            {props.catalogHeading}
+          </h2>
+          <p className="text-[var(--text-secondary)] text-lg leading-relaxed">{props.catalogIntro}</p>
+        </div>
+
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="font-[family-name:var(--font-serif)] text-xl mb-4 text-[var(--text-primary)]">{props.catalogSectionsHeading}</h3>
+            <div className="border border-[var(--border)] rounded-lg overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-[var(--bg-elevated)] text-[var(--text-muted)] text-xs uppercase tracking-wider">
+                  <tr>
+                    <th className="text-left px-3 py-2">{props.catalogColName}</th>
+                    <th className="text-right px-3 py-2">{props.catalogColSetup}</th>
+                    <th className="text-right px-3 py-2">{props.catalogColMonthly}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SECTIONS.map((s) => (
+                    <tr key={s.id} className="border-t border-[var(--border)]">
+                      <td className="px-3 py-2 text-[var(--text-primary)]">
+                        <div className="font-medium">{props.sectionLabels[s.id]?.label ?? s.id}</div>
+                        <div className="text-[10px] text-[var(--text-muted)]">{props.sectionLabels[s.id]?.description}</div>
+                      </td>
+                      <td className="px-3 py-2 text-right text-[var(--text-secondary)] whitespace-nowrap">€ {s.price_setup.toLocaleString('it-IT')}</td>
+                      <td className="px-3 py-2 text-right text-[var(--text-secondary)] whitespace-nowrap">
+                        {s.price_monthly > 0 ? `€ ${s.price_monthly}/mo` : '—'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-[family-name:var(--font-serif)] text-xl mb-4 text-[var(--text-primary)]">{props.catalogFeaturesHeading}</h3>
+            <div className="border border-[var(--border)] rounded-lg overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-[var(--bg-elevated)] text-[var(--text-muted)] text-xs uppercase tracking-wider">
+                  <tr>
+                    <th className="text-left px-3 py-2">{props.catalogColName}</th>
+                    <th className="text-right px-3 py-2">{props.catalogColSetup}</th>
+                    <th className="text-right px-3 py-2">{props.catalogColMonthly}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {FEATURES.map((f) => (
+                    <tr key={f.id} className="border-t border-[var(--border)]">
+                      <td className="px-3 py-2 text-[var(--text-primary)]">
+                        <div className="font-medium">{props.featureLabels[f.id]?.label ?? f.id}</div>
+                        <div className="text-[10px] text-[var(--text-muted)]">{props.featureLabels[f.id]?.description}</div>
+                      </td>
+                      <td className="px-3 py-2 text-right text-[var(--text-secondary)] whitespace-nowrap">€ {f.price_setup.toLocaleString('it-IT')}</td>
+                      <td className="px-3 py-2 text-right text-[var(--text-secondary)] whitespace-nowrap">
+                        {f.price_monthly > 0 ? `€ ${f.price_monthly}/mo` : '—'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
 

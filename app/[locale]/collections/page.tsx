@@ -9,6 +9,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { CollectionsContent } from '@/components/gallery/CollectionsContent';
+import { assertSectionActive } from '@/lib/active-sections';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CollectionsPage({ params }: Props) {
+  assertSectionActive('collections');
   const { locale } = await params;
   setRequestLocale(locale);
 

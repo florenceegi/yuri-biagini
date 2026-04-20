@@ -10,6 +10,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { DeliveryAnimated } from '@/components/delivery/DeliveryAnimated';
 import { DeliveryContent } from '@/components/delivery/DeliveryContent';
+import type { SectionId, FeatureId } from '@/lib/site-catalog';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -29,6 +30,16 @@ export default async function WhatYouGetPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'delivery' });
+  const tCat = await getTranslations({ locale, namespace: 'site_catalog' });
+
+  const sectionIds: SectionId[] = ['collections', 'exhibitions', 'press', 'cv', 'story_behind', 'process', 'journal', 'live', 'commission'];
+  const featureIds: FeatureId[] = ['newsletter', 'brand_driven', 'own_domain'];
+  const sectionLabels = Object.fromEntries(
+    sectionIds.map((id) => [id, { label: tCat(`section_${id}_label`), description: tCat(`section_${id}_description`) }]),
+  ) as Record<SectionId, { label: string; description: string }>;
+  const featureLabels = Object.fromEntries(
+    featureIds.map((id) => [id, { label: tCat(`feature_${id}_label`), description: tCat(`feature_${id}_description`) }]),
+  ) as Record<FeatureId, { label: string; description: string }>;
 
   const metrics = [
     { label: t('metric_perf_label'), value: t('metric_perf_value'), note: t('metric_perf_note') },
@@ -132,6 +143,15 @@ export default async function WhatYouGetPage({ params }: Props) {
         tiersDisclaimer={t('tiers_disclaimer')}
         reductionHeading={t('reduction_heading')}
         reductionBody={t('reduction_body')}
+        catalogHeading={tCat('catalog_heading')}
+        catalogIntro={tCat('catalog_intro')}
+        catalogSectionsHeading={tCat('sections_heading')}
+        catalogFeaturesHeading={tCat('features_heading')}
+        catalogColName={tCat('col_name')}
+        catalogColSetup={tCat('col_setup')}
+        catalogColMonthly={tCat('col_monthly')}
+        sectionLabels={sectionLabels}
+        featureLabels={featureLabels}
         s6Heading={t('s6_heading')}
         s6Bullets={s6Bullets}
         s6Closing={t('s6_closing')}

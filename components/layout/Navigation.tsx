@@ -9,6 +9,7 @@
 import { getTranslations } from 'next-intl/server';
 import { NavigationClient } from './NavigationClient';
 import type { UtilityLabels } from './NavigationUtility';
+import { isSectionActive } from '@/lib/active-sections';
 
 type Props = {
   locale: string;
@@ -20,24 +21,35 @@ export async function Navigation({ locale }: Props) {
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
 
   // Primary = funnel emotivo (visitor-centric): opere → colleziona → commissiona
-  const primaryLinks = [
+  const primaryBase = [
     { href: `/${locale}/works`, label: t('works') },
     { href: `/${locale}/about`, label: t('about') },
     { href: `/${locale}/collect`, label: t('collect') },
-    { href: `/${locale}/commission`, label: t('commission') },
     { href: `/${locale}/contact`, label: t('contact') },
   ];
+  const primaryLinks = isSectionActive('commission')
+    ? [
+        primaryBase[0],
+        primaryBase[1],
+        primaryBase[2],
+        { href: `/${locale}/commission`, label: t('commission') },
+        primaryBase[3],
+      ]
+    : primaryBase;
 
-  // Secondary = narrative deep dive (dropdown "Discover"): 7 pagine narrative
-  const secondaryLinks = [
-    { href: `/${locale}/story-behind`, label: t('story_behind') },
-    { href: `/${locale}/process`, label: t('process') },
-    { href: `/${locale}/journal`, label: t('journal') },
-    { href: `/${locale}/live`, label: t('live') },
-    { href: `/${locale}/exhibitions`, label: t('exhibitions') },
-    { href: `/${locale}/press`, label: t('press') },
-    { href: `/${locale}/cv`, label: t('cv') },
+  // Secondary = narrative deep dive (dropdown "Discover"): only active addon sections
+  const secondaryCandidates: Array<{ id: Parameters<typeof isSectionActive>[0]; href: string; label: string }> = [
+    { id: 'story_behind', href: `/${locale}/story-behind`, label: t('story_behind') },
+    { id: 'process',      href: `/${locale}/process`,      label: t('process') },
+    { id: 'journal',      href: `/${locale}/journal`,      label: t('journal') },
+    { id: 'live',         href: `/${locale}/live`,         label: t('live') },
+    { id: 'exhibitions',  href: `/${locale}/exhibitions`,  label: t('exhibitions') },
+    { id: 'press',        href: `/${locale}/press`,        label: t('press') },
+    { id: 'cv',           href: `/${locale}/cv`,           label: t('cv') },
   ];
+  const secondaryLinks = secondaryCandidates
+    .filter((l) => isSectionActive(l.id))
+    .map(({ href, label }) => ({ href, label }));
 
   // PreferencesMenu labels (namespace: configurator — F2.2.1 will batch-add missing keys).
   // next-intl returns the key name as fallback when a key is missing, so this is safe now.

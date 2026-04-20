@@ -12,6 +12,7 @@ import type { ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { NewsletterSignup } from './NewsletterSignup';
 import { FooterAccordion } from './FooterAccordion';
+import { isSectionActive } from '@/lib/active-sections';
 
 type Props = {
   locale: string;
@@ -69,28 +70,28 @@ export async function Footer({ locale }: Props) {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'FlorenceEGI';
   const legalBase = 'https://art.florenceegi.com/legal';
 
-  // Link groups -----------------------------------------------------
+  // Link groups (addon sections gated via isSectionActive) -----------
   const exploreLinks: LinkItem[] = [
     { label: t('works'), href: `/${locale}/works` },
-    { label: t('collections_link'), href: `/${locale}/collections` },
-    { label: t('exhibitions'), href: `/${locale}/exhibitions` },
-    { label: t('press_link'), href: `/${locale}/press` },
-    { label: t('cv_link'), href: `/${locale}/cv` },
+    ...(isSectionActive('collections') ? [{ label: t('collections_link'), href: `/${locale}/collections` }] : []),
+    ...(isSectionActive('exhibitions') ? [{ label: t('exhibitions'), href: `/${locale}/exhibitions` }] : []),
+    ...(isSectionActive('press')       ? [{ label: t('press_link'),  href: `/${locale}/press` }]        : []),
+    ...(isSectionActive('cv')          ? [{ label: t('cv_link'),     href: `/${locale}/cv` }]           : []),
   ];
 
   const collectLinks: LinkItem[] = [
     { label: t('collect_link'), href: `/${locale}/collect` },
-    { label: t('commission'), href: `/${locale}/commission` },
+    ...(isSectionActive('commission') ? [{ label: t('commission'), href: `/${locale}/commission` }] : []),
     { label: t('available_now'), href: `/${locale}/available-now`, todo: true },
     { label: t('certificates'), href: `/${locale}/certificates`, todo: true },
     { label: t('shipping'), href: `/${locale}/shipping`, todo: true },
   ];
 
   const aboutLinks: LinkItem[] = [
-    { label: t('story'), href: `/${locale}/story-behind` },
-    { label: t('process'), href: `/${locale}/process` },
-    { label: t('journal'), href: `/${locale}/journal` },
-    { label: t('live'), href: `/${locale}/live` },
+    ...(isSectionActive('story_behind') ? [{ label: t('story'),   href: `/${locale}/story-behind` }] : []),
+    ...(isSectionActive('process')      ? [{ label: t('process'), href: `/${locale}/process` }]      : []),
+    ...(isSectionActive('journal')      ? [{ label: t('journal'), href: `/${locale}/journal` }]      : []),
+    ...(isSectionActive('live')         ? [{ label: t('live'),    href: `/${locale}/live` }]         : []),
     { label: t('studio'), href: `/${locale}/studio`, todo: true },
   ];
 

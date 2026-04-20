@@ -15,6 +15,8 @@ import { type AnimationId } from '@/lib/hooks/useAnimation';
 import { type SceneId } from '@/lib/hooks/useScene';
 import { SubdomainInput } from './SubdomainInput';
 import { CommissionCTA } from './CommissionCTA';
+import { SectionsTab } from './SectionsTab';
+import type { SectionId, FeatureId } from '@/lib/site-catalog';
 
 /* ── Catalogue ──────────────────────────────────────────────── */
 
@@ -39,7 +41,7 @@ const SCENE_IDS: SceneId[] = [
   'crystal', 'noise-terrain', 'aurora', 'dot-sphere', 'smoke', 'none',
 ];
 
-type Tab = 'template' | 'animation' | '3d' | 'site';
+type Tab = 'template' | 'animation' | '3d' | 'sections' | 'site';
 
 interface ConfigPanelProps {
   locale: string;
@@ -48,7 +50,23 @@ interface ConfigPanelProps {
     tab_template: string;
     tab_animation: string;
     tab_3d: string;
+    tab_sections: string;
     tab_site: string;
+    sections_tab: {
+      tier_heading: string;
+      sections_heading: string;
+      features_heading: string;
+      total_setup: string;
+      total_monthly: string;
+      included: string;
+      setup_from: string;
+      monthly_from: string;
+      tier_creator: string;
+      tier_studio: string;
+      tier_maestro: string;
+      section: Record<SectionId, { label: string; description: string }>;
+      feature: Record<FeatureId, { label: string; description: string }>;
+    };
     /* Template descriptions (i18n) */
     tpl_01: string; tpl_02: string; tpl_03: string;
     tpl_04: string; tpl_05: string; tpl_06: string;
@@ -132,6 +150,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
               { key: 'template' as Tab, label: labels.tab_template },
               { key: 'animation' as Tab, label: labels.tab_animation },
               { key: '3d' as Tab, label: labels.tab_3d },
+              { key: 'sections' as Tab, label: labels.tab_sections },
               { key: 'site' as Tab, label: labels.tab_site },
             ]).map(({ key, label }) => (
               <button
@@ -154,7 +173,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
             {tab === 'template' && (
               <div className="space-y-0.5">
                 {TEMPLATE_IDS.map((id) => {
-                  const desc = labels[`tpl_${id}` as keyof typeof labels];
+                  const desc = labels[`tpl_${id}` as keyof typeof labels] as string;
                   return (
                     <button
                       key={id}
@@ -193,7 +212,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
                   >
                     <span className="w-6 text-center text-base text-[var(--text-muted)]">{ANIMATION_ICONS[id]}</span>
                     <span className="text-sm text-[var(--text-primary)]">
-                      {labels[`anim_${id}` as keyof typeof labels]}
+                      {labels[`anim_${id}` as keyof typeof labels] as string}
                     </span>
                     {id === currentAnimation && <span className="ml-auto text-[var(--accent)] text-xs">●</span>}
                   </button>
@@ -216,13 +235,16 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
                       {id === 'none' ? '—' : '◆'}
                     </span>
                     <span className="text-sm text-[var(--text-primary)]">
-                      {labels[`scene_${id.replace('-', '_')}` as keyof typeof labels]}
+                      {labels[`scene_${id.replace('-', '_')}` as keyof typeof labels] as string}
                     </span>
                     {id === currentScene && <span className="ml-auto text-[var(--accent)] text-xs">●</span>}
                   </button>
                 ))}
               </div>
             )}
+
+            {/* Sections + features selector */}
+            {tab === 'sections' && <SectionsTab labels={labels.sections_tab} />}
 
             {/* Site config: subdomain + commission */}
             {tab === 'site' && (

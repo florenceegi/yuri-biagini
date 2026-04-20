@@ -11,6 +11,7 @@ import type { Metadata } from 'next';
 import { CommissionAnimated } from '@/components/commission/CommissionAnimated';
 import { CommissionContent } from '@/components/commission/CommissionContent';
 import { CommissionForm } from '@/components/commission/CommissionForm';
+import { assertSectionActive } from '@/lib/active-sections';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CommissionPage({ params }: Props) {
+  assertSectionActive('commission');
   const { locale } = await params;
   setRequestLocale(locale);
 

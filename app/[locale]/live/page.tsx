@@ -10,6 +10,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { LiveAnimated } from '@/components/live/LiveAnimated';
 import { LiveContent } from '@/components/live/LiveContent';
+import { assertSectionActive } from '@/lib/active-sections';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LivePage({ params }: Props) {
+  assertSectionActive('live');
   const { locale } = await params;
   setRequestLocale(locale);
 

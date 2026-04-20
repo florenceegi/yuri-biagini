@@ -9,6 +9,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { CVContent } from '@/components/cv/CVContent';
+import { assertSectionActive } from '@/lib/active-sections';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CVPage({ params }: Props) {
+  assertSectionActive('cv');
   const { locale } = await params;
   setRequestLocale(locale);
 

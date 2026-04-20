@@ -1,16 +1,16 @@
 /**
  * @package CREATOR-STAGING — SiteCommissionForm
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-20
- * @purpose Form with which an artist commissions FlorenceEGI WebAgency to build the personal site — prefilled with current configurator state when present
+ * @purpose Form with which an artist commissions FlorenceEGI WebAgency to build the personal site — prefills tier/sections/features from configurator selection and shows live setup + monthly quote.
  */
 
 'use client';
 
-import { useState, useEffect } from 'react';
-
-type Tier = 'creator' | 'studio' | 'maestro';
+import { useState, useEffect, useMemo } from 'react';
+import { useSiteSelection } from '@/lib/hooks/useSiteSelection';
+import { SECTIONS, FEATURES, TIERS, computeQuote, getTier, type SectionId, type FeatureId } from '@/lib/site-catalog';
 
 type Labels = {
   name: string;
@@ -39,6 +39,15 @@ type Labels = {
   gdpr_consent: string;
   gdpr_privacy_policy: string;
   gdpr_consent_required: string;
+  quote_heading: string;
+  quote_base_setup: string;
+  quote_base_monthly: string;
+  quote_addons: string;
+  quote_total_setup: string;
+  quote_total_monthly: string;
+  addons_empty: string;
+  section_label: Record<SectionId, string>;
+  feature_label: Record<FeatureId, string>;
 };
 
 type Props = { labels: Labels };
@@ -52,10 +61,14 @@ function readCookie(name: string): string | null {
   return match ? decodeURIComponent(match[2]) : null;
 }
 
+function fmt(eur: number): string {
+  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(eur);
+}
+
 export function SiteCommissionForm({ labels }: Props) {
+  const { selection, update, hydrated } = useSiteSelection();
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'rate_limit'>('idle');
   const [gdprError, setGdprError] = useState(false);
-  const [tier, setTier] = useState<Tier>('studio');
   const [config, setConfig] = useState<{ template: string; animation: string; scene: string }>({
     template: '',
     animation: '',
@@ -68,6 +81,12 @@ export function SiteCommissionForm({ labels }: Props) {
     const scene = readCookie('scene') || document.documentElement.getAttribute('data-scene') || '';
     setConfig({ template, animation, scene });
   }, []);
+
+  const tier = getTier(selection.tier);
+  const quote = useMemo(
+    () => computeQuote(selection.tier, selection.sections, selection.features),
+    [selection.tier, selection.sections, selection.features],
+  );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -91,13 +110,15 @@ export function SiteCommissionForm({ labels }: Props) {
           name: data.get('name'),
           email: data.get('email'),
           phone: data.get('phone') || undefined,
-          tier,
+          tier: selection.tier,
           template: config.template || undefined,
           animation: config.animation || undefined,
           scene: config.scene || undefined,
           subdomain_wish: data.get('subdomain_wish') || undefined,
           timeline: data.get('timeline') || undefined,
           message: data.get('message') || undefined,
+          sections: selection.sections,
+          features: selection.features,
           gdpr_consent: true,
         }),
       });
@@ -112,6 +133,11 @@ export function SiteCommissionForm({ labels }: Props) {
   }
 
   const hasConfig = config.template || config.animation || config.scene;
+  const addonSections = quote.addon_sections;
+  const addonFeatures = quote.addon_features;
+  const addonTotalSetup = quote.setup - tier.setup;
+  const addonTotalMonthly = quote.monthly - tier.monthly;
+  const hasAddons = addonSections.length + addonFeatures.length > 0;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
@@ -123,11 +149,11 @@ export function SiteCommissionForm({ labels }: Props) {
       <fieldset className="space-y-3">
         <legend className="block text-sm text-[var(--text-secondary)] mb-2">{labels.tier}</legend>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {(['creator', 'studio', 'maestro'] as Tier[]).map((t) => (
+          {TIERS.map((t) => (
             <label
-              key={t}
+              key={t.id}
               className={`cursor-pointer border rounded-lg p-4 transition-colors ${
-                tier === t
+                selection.tier === t.id
                   ? 'border-[var(--accent)] bg-[var(--bg-elevated)]'
                   : 'border-[var(--border)] hover:bg-[var(--bg-elevated)]/50'
               }`}
@@ -135,25 +161,81 @@ export function SiteCommissionForm({ labels }: Props) {
               <input
                 type="radio"
                 name="tier"
-                value={t}
-                checked={tier === t}
-                onChange={() => setTier(t)}
+                value={t.id}
+                checked={selection.tier === t.id}
+                onChange={() => update({ tier: t.id })}
                 className="sr-only"
               />
               <div className="text-xs uppercase tracking-widest font-bold text-[var(--text-primary)]">
-                {t === 'creator' && labels.tier_creator}
-                {t === 'studio' && labels.tier_studio}
-                {t === 'maestro' && labels.tier_maestro}
+                {t.id === 'creator' && labels.tier_creator}
+                {t.id === 'studio' && labels.tier_studio}
+                {t.id === 'maestro' && labels.tier_maestro}
               </div>
-              <div className="text-[var(--text-muted)] text-xs mt-1">
-                {t === 'creator' && '€ 3.500'}
-                {t === 'studio' && '€ 6.500'}
-                {t === 'maestro' && '€ 12.000'}
-              </div>
+              <div className="text-[var(--text-muted)] text-xs mt-1">{fmt(t.setup)}</div>
+              <div className="text-[var(--text-muted)] text-xs">{fmt(t.monthly)}/mo</div>
             </label>
           ))}
         </div>
       </fieldset>
+
+      {hydrated && (
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4 space-y-3">
+          <div className="text-xs uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
+            {labels.quote_heading}
+          </div>
+          <div className="flex justify-between text-xs text-[var(--text-muted)]">
+            <span>{labels.quote_base_setup}</span>
+            <span className="text-[var(--text-primary)]">{fmt(tier.setup)}</span>
+          </div>
+          <div className="flex justify-between text-xs text-[var(--text-muted)]">
+            <span>{labels.quote_base_monthly}</span>
+            <span className="text-[var(--text-primary)]">{fmt(tier.monthly)}/mo</span>
+          </div>
+          <div className="border-t border-[var(--border)] pt-3">
+            <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-1">{labels.quote_addons}</div>
+            {!hasAddons && <div className="text-xs text-[var(--text-muted)] italic">{labels.addons_empty}</div>}
+            {addonSections.map((id) => {
+              const s = SECTIONS.find((x) => x.id === id);
+              if (!s) return null;
+              return (
+                <div key={id} className="flex justify-between text-xs">
+                  <span className="text-[var(--text-secondary)]">{labels.section_label[id] ?? id}</span>
+                  <span className="text-[var(--text-primary)]">
+                    +{fmt(s.price_setup)}{s.price_monthly > 0 && ` · +${fmt(s.price_monthly)}/mo`}
+                  </span>
+                </div>
+              );
+            })}
+            {addonFeatures.map((id) => {
+              const f = FEATURES.find((x) => x.id === id);
+              if (!f) return null;
+              return (
+                <div key={id} className="flex justify-between text-xs">
+                  <span className="text-[var(--text-secondary)]">{labels.feature_label[id] ?? id}</span>
+                  <span className="text-[var(--text-primary)]">
+                    +{fmt(f.price_setup)}{f.price_monthly > 0 && ` · +${fmt(f.price_monthly)}/mo`}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="border-t border-[var(--border)] pt-3 flex justify-between items-center">
+            <div>
+              <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">{labels.quote_total_setup}</div>
+              <div className="text-lg font-bold text-[var(--text-primary)]">{fmt(quote.setup)}</div>
+            </div>
+            <div className="text-right">
+              <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">{labels.quote_total_monthly}</div>
+              <div className="text-lg font-bold text-[var(--accent)]">{fmt(quote.monthly)}/mo</div>
+            </div>
+          </div>
+          {hasAddons && (
+            <div className="text-[10px] text-[var(--text-muted)] text-right">
+              (addons: +{fmt(addonTotalSetup)} · +{fmt(addonTotalMonthly)}/mo)
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>

@@ -1,16 +1,29 @@
 /**
  * @package CREATOR-STAGING — Site Commission API
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-20
- * @purpose Artist commissions personal site to FlorenceEGI WebAgency via Resend email — distinct from /api/commission (which is artwork-commission for clients of the artist)
+ * @purpose Artist commissions personal site to FlorenceEGI WebAgency via Resend email — includes modular section + feature addons with server-recomputed quote (MiCA-safe, EUR).
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { rateLimit } from '@/lib/rate-limit';
+import {
+  SECTIONS,
+  FEATURES,
+  TIERS,
+  computeQuote,
+  getTier,
+  type SectionId,
+  type FeatureId,
+  type TierId,
+} from '@/lib/site-catalog';
 
 const tierSchema = z.enum(['creator', 'studio', 'maestro']);
+
+const sectionEnum = z.enum(SECTIONS.map((s) => s.id) as [SectionId, ...SectionId[]]);
+const featureEnum = z.enum(FEATURES.map((f) => f.id) as [FeatureId, ...FeatureId[]]);
 
 const siteCommissionSchema = z.object({
   name: z.string().min(1).max(100),
@@ -23,11 +36,17 @@ const siteCommissionSchema = z.object({
   subdomain_wish: z.string().max(60).optional(),
   timeline: z.string().max(200).optional(),
   message: z.string().max(10000).optional(),
+  sections: z.array(sectionEnum).max(20).optional().default([]),
+  features: z.array(featureEnum).max(20).optional().default([]),
   gdpr_consent: z.literal(true),
 });
 
 const RATE_LIMIT = 3;
 const RATE_WINDOW = 300_000;
+
+function fmt(eur: number): string {
+  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(eur);
+}
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
@@ -39,12 +58,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = siteCommissionSchema.parse(body);
 
+    const tier = getTier(data.tier as TierId);
+    const quote = computeQuote(data.tier as TierId, data.sections as SectionId[], data.features as FeatureId[]);
+
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.WEBAGENCY_EMAIL_TO || process.env.COMMISSION_EMAIL_TO || 'webagency@florenceegi.com';
 
     if (!apiKey) {
       console.warn('RESEND_API_KEY not configured — site-commission email not sent');
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ success: true, quote });
     }
 
     const lines = [
@@ -52,12 +74,31 @@ export async function POST(request: NextRequest) {
       `Email: ${data.email}`,
     ];
     if (data.phone) lines.push(`Phone: ${data.phone}`);
-    lines.push('', `Tier: ${data.tier.toUpperCase()}`);
+    lines.push('', `Tier: ${data.tier.toUpperCase()} — setup ${fmt(tier.setup)} · monthly ${fmt(tier.monthly)}`);
     if (data.template) lines.push(`Template: ${data.template}`);
     if (data.animation) lines.push(`Animation: ${data.animation}`);
     if (data.scene) lines.push(`Scene: ${data.scene}`);
     if (data.subdomain_wish) lines.push(`Subdomain wish: ${data.subdomain_wish}`);
     if (data.timeline) lines.push(`Timeline: ${data.timeline}`);
+
+    if (quote.addon_sections.length > 0) {
+      lines.push('', 'Addon sections:');
+      for (const id of quote.addon_sections) {
+        const s = SECTIONS.find((x) => x.id === id);
+        if (!s) continue;
+        lines.push(`  - ${id}: +${fmt(s.price_setup)}${s.price_monthly > 0 ? ` +${fmt(s.price_monthly)}/mo` : ''}`);
+      }
+    }
+    if (quote.addon_features.length > 0) {
+      lines.push('', 'Addon features:');
+      for (const id of quote.addon_features) {
+        const f = FEATURES.find((x) => x.id === id);
+        if (!f) continue;
+        lines.push(`  - ${id}: +${fmt(f.price_setup)}${f.price_monthly > 0 ? ` +${fmt(f.price_monthly)}/mo` : ''}`);
+      }
+    }
+
+    lines.push('', `TOTAL SETUP: ${fmt(quote.setup)}`, `TOTAL MONTHLY: ${fmt(quote.monthly)}`);
     if (data.message) lines.push('', `Message:\n${data.message}`);
 
     const res = await fetch('https://api.resend.com/emails', {
@@ -70,7 +111,7 @@ export async function POST(request: NextRequest) {
         from: 'FlorenceEGI WebAgency <noreply@florenceegi.com>',
         to: [to],
         reply_to: data.email,
-        subject: `[Site ${data.tier.toUpperCase()}] ${data.name}`,
+        subject: `[Site ${data.tier.toUpperCase()}] ${data.name} — ${fmt(quote.setup)} + ${fmt(quote.monthly)}/mo`,
         text: lines.join('\n'),
       }),
     });
@@ -81,7 +122,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false }, { status: 500 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, quote });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json(
@@ -92,4 +133,12 @@ export async function POST(request: NextRequest) {
     console.error('Site commission API error:', err);
     return NextResponse.json({ success: false }, { status: 500 });
   }
+}
+
+export async function GET() {
+  return NextResponse.json({
+    tiers: TIERS,
+    sections: SECTIONS,
+    features: FEATURES,
+  });
 }

@@ -10,6 +10,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { StoryBehindAnimated } from '@/components/story/StoryBehindAnimated';
 import { StoryBehindContent } from '@/components/story/StoryBehindContent';
+import { assertSectionActive } from '@/lib/active-sections';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function StoryBehindPage({ params }: Props) {
+  assertSectionActive('story_behind');
   const { locale } = await params;
   setRequestLocale(locale);
 

@@ -104,8 +104,18 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'a11y' });
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
+  const tCat = await getTranslations({ locale, namespace: 'site_catalog' });
   const tA11yPanel = await getTranslations({ locale, namespace: 'a11y_panel' });
   const tCookie = await getTranslations({ locale, namespace: 'cookie' });
+
+  const sectionIds = ['collections', 'exhibitions', 'press', 'cv', 'story_behind', 'process', 'journal', 'live', 'commission'] as const;
+  const featureIds = ['newsletter', 'brand_driven', 'own_domain'] as const;
+  const sectionsLabelMap = Object.fromEntries(
+    sectionIds.map((id) => [id, { label: tCat(`section_${id}_label`), description: tCat(`section_${id}_description`) }]),
+  ) as Record<(typeof sectionIds)[number], { label: string; description: string }>;
+  const featuresLabelMap = Object.fromEntries(
+    featureIds.map((id) => [id, { label: tCat(`feature_${id}_label`), description: tCat(`feature_${id}_description`) }]),
+  ) as Record<(typeof featureIds)[number], { label: string; description: string }>;
 
   return (
     <LenisProvider>
@@ -132,7 +142,23 @@ export default async function LocaleLayout({ children, params }: Props) {
           tab_template: tCfg('tab_template'),
           tab_animation: tCfg('tab_animation'),
           tab_3d: tCfg('tab_3d'),
+          tab_sections: tCfg('tab_sections'),
           tab_site: tCfg('tab_site'),
+          sections_tab: {
+            tier_heading: tCat('tier_heading'),
+            sections_heading: tCat('sections_heading'),
+            features_heading: tCat('features_heading'),
+            total_setup: tCat('total_setup'),
+            total_monthly: tCat('total_monthly'),
+            included: tCat('included'),
+            setup_from: tCat('setup_from'),
+            monthly_from: tCat('monthly_from'),
+            tier_creator: tCat('tier_creator'),
+            tier_studio: tCat('tier_studio'),
+            tier_maestro: tCat('tier_maestro'),
+            section: sectionsLabelMap,
+            feature: featuresLabelMap,
+          },
           tpl_01: tCfg('tpl_01'), tpl_02: tCfg('tpl_02'), tpl_03: tCfg('tpl_03'),
           tpl_04: tCfg('tpl_04'), tpl_05: tCfg('tpl_05'), tpl_06: tCfg('tpl_06'),
           anim_minimal: tCfg('anim_minimal'), anim_cinematic: tCfg('anim_cinematic'),

@@ -10,6 +10,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { ProcessAnimated } from '@/components/process/ProcessAnimated';
 import { ProcessContent } from '@/components/process/ProcessContent';
+import { assertSectionActive } from '@/lib/active-sections';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProcessPage({ params }: Props) {
+  assertSectionActive('process');
   const { locale } = await params;
   setRequestLocale(locale);
 
