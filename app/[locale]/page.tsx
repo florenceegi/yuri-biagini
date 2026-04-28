@@ -11,14 +11,9 @@ import { getTranslations } from 'next-intl/server';
 import { getVariant } from '@/lib/variant';
 import { getScene } from '@/lib/scene3d';
 
-import { HeroImmersive } from '@/components/heroes/HeroImmersive';
-import { HeroCanvas } from '@/components/heroes/HeroCanvas';
-import { HeroOscura } from '@/components/heroes/HeroOscura';
-import { HeroScrollytelling } from '@/components/heroes/HeroScrollytelling';
-import { HeroMagazine } from '@/components/heroes/HeroMagazine';
-import { HeroBrutalist } from '@/components/heroes/HeroBrutalist';
 import { HeroAnimated } from '@/components/heroes/HeroAnimated';
 import { HeroWrapper } from '@/components/three/HeroWrapper';
+import { HomeHero } from '@/components/home/HomeHero';
 import { HomeFeaturedWorks } from '@/components/home/HomeContent';
 
 type Props = {
@@ -38,11 +33,11 @@ export default async function HomePage({ params }: Props) {
   const sceneId = await getScene();
   const has3D = sceneId !== 'none';
 
-  const artistName = process.env.NEXT_PUBLIC_SITE_NAME || 'Creator Staging';
+  const fallbackName = process.env.NEXT_PUBLIC_SITE_NAME || 'Creator Staging';
 
   return (
     <>
-      {/* Hero — variant-aware, no server-side artwork (auth is client-only) */}
+      {/* Hero — variant-aware, reads creator name from auth context (client-side) */}
       <HeroAnimated>
       <div className="relative">
         {has3D && (
@@ -51,40 +46,14 @@ export default async function HomePage({ params }: Props) {
           </div>
         )}
         <div className={has3D ? 'relative z-10' : ''}>
-          {variant === '01' && (
-            <HeroOscura
-              artistName={artistName}
-              tagline={tHero('tagline')}
-            />
-          )}
-          {variant === '02' && (
-            <HeroCanvas
-              artistName={artistName}
-              tagline={tHero('tagline')}
-              scrollLabel={tWorks('view_on_egi')}
-              locale={locale}
-            />
-          )}
-          {variant === '03' && (
-            <HeroImmersive artistName={artistName} subtitle={tHero('tagline')} />
-          )}
-          {variant === '04' && (
-            <HeroScrollytelling artistName={artistName} />
-          )}
-          {variant === '05' && (
-            <HeroMagazine
-              artistName={artistName}
-              artworks={[]}
-              locale={locale}
-              latestExhibitionLabel={t('exhibitions')}
-            />
-          )}
-          {variant === '06' && (
-            <HeroBrutalist
-              artistName={artistName}
-              locale={locale}
-            />
-          )}
+          <HomeHero
+            variant={variant}
+            fallbackName={fallbackName}
+            tagline={tHero('tagline')}
+            scrollLabel={tWorks('view_on_egi')}
+            locale={locale}
+            exhibitionsLabel={t('exhibitions')}
+          />
         </div>
       </div>
       </HeroAnimated>
